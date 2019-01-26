@@ -56,7 +56,10 @@ class Service: ServiceProtocol {
         let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
             guard let data = data else { return }
             do {
-                let decodedResponse = try JSONDecoder().decode(responseType, from: data)
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .formatted(DateFormatter.yyyyMMdd)
+                let decodedResponse = try decoder.decode(responseType, from: data)
+                
                 // return result to the callback
                 callback(decodedResponse, nil)
             } catch {

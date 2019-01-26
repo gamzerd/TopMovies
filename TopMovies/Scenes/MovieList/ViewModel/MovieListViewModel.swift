@@ -13,7 +13,7 @@ final class MovieListViewModel: MovieListViewModelProtocol {
     
     var list: [Movie] = []
     
-    var currentPageNumber = 0
+    var currentPageNumber = 1
     
     weak var viewDelegate: MovieListViewProtocol?
     
@@ -42,7 +42,7 @@ final class MovieListViewModel: MovieListViewModelProtocol {
      * Called when page is loaded.
      */
     func load() {
-        dataSource.getMovies(page: 1, callback: didReceiveMovies(list:error:))
+        dataSource.getMovies(page: currentPageNumber, callback: didReceiveMovies(list:error:))
     }
     
     /**

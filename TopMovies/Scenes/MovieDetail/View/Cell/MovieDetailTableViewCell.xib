@@ -20,13 +20,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AS8-W1-MSh">
-                        <rect key="frame" x="16" y="11" width="268" height="432"/>
+                        <rect key="frame" x="16" y="16" width="268" height="421.5"/>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="AS8-W1-MSh" firstAttribute="top" secondItem="JZQ-XZ-1sd" secondAttribute="top" constant="11" id="CKI-8c-vKt"/>
+                    <constraint firstItem="AS8-W1-MSh" firstAttribute="top" secondItem="JZQ-XZ-1sd" secondAttribute="top" constant="16" id="CKI-8c-vKt"/>
                     <constraint firstAttribute="trailing" secondItem="AS8-W1-MSh" secondAttribute="trailing" constant="16" id="aHo-06-1WX"/>
-                    <constraint firstAttribute="bottom" secondItem="AS8-W1-MSh" secondAttribute="bottom" constant="10.5" id="miM-mS-sc3"/>
+                    <constraint firstAttribute="bottom" secondItem="AS8-W1-MSh" secondAttribute="bottom" constant="16" id="miM-mS-sc3"/>
                     <constraint firstItem="AS8-W1-MSh" firstAttribute="leading" secondItem="JZQ-XZ-1sd" secondAttribute="leading" constant="16" id="nk1-Qe-YBq"/>
                 </constraints>
             </tableViewCellContentView>

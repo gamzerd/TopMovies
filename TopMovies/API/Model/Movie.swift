@@ -33,14 +33,14 @@ class Movie: Codable {
     var voteAverage: Double = 1.0
     var posterPath: String = ""
     var overview: String = ""
-    var releaseDate: String = ""
+    var releaseDate: Date
 
     init(title: String = "",
          id: Int = 0,
          voteAverage: Double = 1.0,
          posterPath: String = "",
          overview: String = "",
-         releaseDate: String = "")
+         releaseDate: Date)
     {
         self.title = title
         self.id = id

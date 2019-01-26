@@ -21,6 +21,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
      */
     func getTitle() -> String {
         
-        return self.movie.releaseDate
+        return self.movie.title
     }
 }

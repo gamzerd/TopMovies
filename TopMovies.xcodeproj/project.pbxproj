@@ -38,6 +38,8 @@
 		FA0981EA21FBBFD0002B3099 /* MovieDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981E921FBBFD0002B3099 /* MovieDetailTableViewCell.swift */; };
 		FA0981EC21FBBFE4002B3099 /* MovieDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0981EB21FBBFE4002B3099 /* MovieDetailTableViewCell.xib */; };
 		FA0981EE21FBD40E002B3099 /* MoviesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981ED21FBD40E002B3099 /* MoviesRequest.swift */; };
+		FA0981F021FC03AF002B3099 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981EF21FC03AF002B3099 /* DateExtensions.swift */; };
+		FA0981F221FC05B2002B3099 /* DateFormatterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981F121FC05B2002B3099 /* DateFormatterExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,8 @@
 		FA0981E921FBBFD0002B3099 /* MovieDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailTableViewCell.swift; sourceTree = "<group>"; };
 		FA0981EB21FBBFE4002B3099 /* MovieDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailTableViewCell.xib; sourceTree = "<group>"; };
 		FA0981ED21FBD40E002B3099 /* MoviesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesRequest.swift; sourceTree = "<group>"; };
+		FA0981EF21FC03AF002B3099 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		FA0981F121FC05B2002B3099 /* DateFormatterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +222,8 @@
 				FA0981D121FB66E3002B3099 /* UITableViewCellExtensions.swift */,
 				FA0981D321FB66FA002B3099 /* UITableViewExtensions.swift */,
 				FA0981DD21FB6C95002B3099 /* UIImageViewExtensions.swift */,
+				FA0981EF21FC03AF002B3099 /* DateExtensions.swift */,
+				FA0981F121FC05B2002B3099 /* DateFormatterExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -425,11 +431,13 @@
 				FA09818A21FB16EC002B3099 /* MovieListViewController.swift in Sources */,
 				FA0981B421FB1981002B3099 /* MoviesDataSource.swift in Sources */,
 				FA0981DE21FB6C95002B3099 /* UIImageViewExtensions.swift in Sources */,
+				FA0981F221FC05B2002B3099 /* DateFormatterExtensions.swift in Sources */,
 				FA0981D621FB69BB002B3099 /* MovieListBuilder.swift in Sources */,
 				FA0981E821FBBD6D002B3099 /* MovieDetailViewModel.swift in Sources */,
 				FA0981D221FB66E3002B3099 /* UITableViewCellExtensions.swift in Sources */,
 				FA0981BE21FB4BC5002B3099 /* MoviesResponse.swift in Sources */,
 				FA0981DC21FB6B04002B3099 /* MovieListTableViewCell.swift in Sources */,
+				FA0981F021FC03AF002B3099 /* DateExtensions.swift in Sources */,
 				FA09818821FB16EC002B3099 /* AppDelegate.swift in Sources */,
 				FA0981E621FBBD5D002B3099 /* MovieDetailViewModelProtocol.swift in Sources */,
 				FA0981D021FB5E3D002B3099 /* MovieListViewModel.swift in Sources */,
