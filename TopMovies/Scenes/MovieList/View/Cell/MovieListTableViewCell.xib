@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieListTableViewCell" customModule="TopMovies" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieListTableViewCell" rowHeight="200" id="c5B-pN-hMk" customClass="MovieListTableViewCell" customModule="TopMovies" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="418" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c5B-pN-hMk" id="ecW-YZ-1WY">
+                <rect key="frame" x="0.0" y="0.0" width="418" height="199.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DtI-Rk-Rme">
+                        <rect key="frame" x="10" y="0.0" width="140" height="200"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="140" id="y90-Qr-CJV"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9a-x6-gVa">
+                        <rect key="frame" x="160" y="60" width="238" height="109"/>
+                        <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="16"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8M-aM-mmC">
+                        <rect key="frame" x="161" y="31" width="203" height="20"/>
+                        <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="16"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="77 %" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S16-UD-IML">
+                        <rect key="frame" x="379" y="172" width="39" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="16"/>
+                        <color key="textColor" red="0.14806862361899986" green="1" blue="0.18009314327601877" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zi1-7Z-PVV">
+                        <rect key="frame" x="160" y="11" width="228" height="21"/>
+                        <fontDescription key="fontDescription" name="GeezaPro-Bold" family="Geeza Pro" pointSize="17"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="F9a-x6-gVa" secondAttribute="trailing" constant="20" id="0U5-Jc-gHQ"/>
+                    <constraint firstAttribute="bottom" secondItem="DtI-Rk-Rme" secondAttribute="bottom" constant="-0.5" id="2pF-Te-gqy"/>
+                    <constraint firstItem="J8M-aM-mmC" firstAttribute="top" secondItem="Zi1-7Z-PVV" secondAttribute="bottom" constant="-1" id="3eF-3r-wig"/>
+                    <constraint firstAttribute="bottom" secondItem="F9a-x6-gVa" secondAttribute="bottom" constant="30.5" id="5tD-Zv-luK"/>
+                    <constraint firstItem="Zi1-7Z-PVV" firstAttribute="leading" secondItem="F9a-x6-gVa" secondAttribute="leading" id="7ra-i0-fbj"/>
+                    <constraint firstItem="DtI-Rk-Rme" firstAttribute="top" secondItem="ecW-YZ-1WY" secondAttribute="top" id="Llt-Gf-MZS"/>
+                    <constraint firstItem="Zi1-7Z-PVV" firstAttribute="trailing" secondItem="F9a-x6-gVa" secondAttribute="trailing" constant="-10" id="Nlh-43-Pyi"/>
+                    <constraint firstItem="Zi1-7Z-PVV" firstAttribute="top" secondItem="ecW-YZ-1WY" secondAttribute="top" constant="11" id="OVI-i5-2OB"/>
+                    <constraint firstItem="F9a-x6-gVa" firstAttribute="leading" secondItem="DtI-Rk-Rme" secondAttribute="trailing" constant="10" id="XpG-Qf-8eU"/>
+                    <constraint firstItem="J8M-aM-mmC" firstAttribute="trailing" secondItem="Zi1-7Z-PVV" secondAttribute="trailing" constant="-24" id="hoo-NY-ZsW"/>
+                    <constraint firstItem="DtI-Rk-Rme" firstAttribute="leading" secondItem="ecW-YZ-1WY" secondAttribute="leading" constant="10" id="iOh-0v-Yjo"/>
+                    <constraint firstItem="J8M-aM-mmC" firstAttribute="leading" secondItem="Zi1-7Z-PVV" secondAttribute="leading" constant="1" id="qX5-eA-yiK"/>
+                    <constraint firstItem="F9a-x6-gVa" firstAttribute="top" secondItem="ecW-YZ-1WY" secondAttribute="top" constant="60" id="zs3-yn-pJH"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="cXK-zu-2jr"/>
+            <connections>
+                <outlet property="average" destination="S16-UD-IML" id="fEM-SJ-yxs"/>
+                <outlet property="overview" destination="F9a-x6-gVa" id="23O-mn-tL0"/>
+                <outlet property="poster" destination="DtI-Rk-Rme" id="zin-Li-Yr5"/>
+                <outlet property="releaseDate" destination="J8M-aM-mmC" id="2Q3-nM-iJf"/>
+                <outlet property="title" destination="Zi1-7Z-PVV" id="WrR-0G-Hq9"/>
+            </connections>
+            <point key="canvasLocation" x="-515.20000000000005" y="-221.28935532233885"/>
+        </tableViewCell>
+    </objects>
+</document>
