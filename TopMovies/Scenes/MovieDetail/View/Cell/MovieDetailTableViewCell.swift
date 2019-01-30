@@ -16,7 +16,7 @@ class MovieDetailTableViewCell: UITableViewCell {
      * Setups cell.
      * @param movie: movie object to set cell.
      */
-    func setup(with movie: Movie) {
+    func setup(with movie: FavMovie) {
         poster.setImage(with: AppConstants.API.baseImagePath + movie.posterPath)
     }
 }

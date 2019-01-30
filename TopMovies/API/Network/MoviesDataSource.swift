@@ -34,5 +34,14 @@ class MoviesDataSource: DataSourceProtocol {
         })
         
     }
+    
+    func saveFavourite() {
+        
+    }
+    
+    func deleteFavourite() {
+        
+        
+    }
 
 }

@@ -34,11 +34,14 @@ extension MovieListViewController: MovieListViewProtocol {
     
     /**
      * Shows movie list.
-     * @param list: to show
      */
-    func showList(list: Array<Movie>) {
+    func showList(index: Int) {
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            if index == -1 {
+                self.tableView.reloadData()
+            } else {
+                self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
+            }
         }
     }
     
@@ -55,7 +58,7 @@ extension MovieListViewController: MovieListViewProtocol {
      * Opens detail page.
      * @param movie: Object to set details, fromViewController: controller to show detail
      */
-    func openPage(movie: Movie) {
+    func openPage(movie: FavMovie) {
         delegate.showDetails(movie: movie, fromViewController: self)
     }
     
@@ -71,6 +74,10 @@ extension MovieListViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieListTableViewCell.identifier) as! MovieListTableViewCell
         cell.setup(with: self.viewModel.list[indexPath.row])
+                
+        cell.buttonClosure = {
+            self.viewModel.didFavouriteButtonClick(index: indexPath.row)
+        }
         
         if indexPath.row == self.viewModel.list.count - 1 {
             self.viewModel.didScrollToBottom()

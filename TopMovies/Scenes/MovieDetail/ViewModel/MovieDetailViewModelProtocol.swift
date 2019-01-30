@@ -10,7 +10,7 @@ import Foundation
 
 protocol MovieDetailViewModelProtocol {
     
-    var movie: Movie { get set }
+    var movie: FavMovie { get set }
     
     func getTitle() -> String
     

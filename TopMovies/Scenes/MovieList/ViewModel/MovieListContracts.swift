@@ -13,7 +13,7 @@ protocol MovieListViewModelProtocol: class {
     
     var viewDelegate: MovieListViewProtocol? { get set }
     
-    var list: [Movie] { get set }
+    var list: [FavMovie] { get set }
 
     func load()
     
@@ -24,13 +24,15 @@ protocol MovieListViewModelProtocol: class {
     func didPressLong(index: Int) -> UIViewController
     
     func didScrollToBottom()
+    
+    func didFavouriteButtonClick(index: Int)
 }
 
 protocol MovieListViewProtocol: class {
     
-    func showList(list: Array<Movie>)
+    func showList(index: Int)
 
     func showError(message: String)
     
-    func openPage(movie: Movie)
+    func openPage(movie: FavMovie)
 }

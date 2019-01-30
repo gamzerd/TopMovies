@@ -11,7 +11,7 @@ import UIKit
 
 final class MovieListViewModel: MovieListViewModelProtocol {
     
-    var list: [Movie] = []
+    var list: [FavMovie] = []
     
     var currentPageNumber = 1
     
@@ -53,8 +53,12 @@ final class MovieListViewModel: MovieListViewModelProtocol {
     func didReceiveMovies(list: Array<Movie>?, error: Error?) {
         
         if let list = list {
-            self.list.append(contentsOf: list)
-            viewDelegate?.showList(list: list)
+            let favList = list.map({
+                return FavMovie.initFromMovie(movie: $0)
+            })
+            
+            self.list.append(contentsOf: favList)
+            viewDelegate?.showList(index: -1)
         }
         
         if error != nil {
@@ -68,6 +72,17 @@ final class MovieListViewModel: MovieListViewModelProtocol {
         dataSource.getMovies(page: currentPageNumber, callback: didReceiveMovies(list:error:))
     }
 
+    func didFavouriteButtonClick(index: Int) {
+     
+        if list[index].isFavourite {
+            list[index].isFavourite = false
+            dataSource.deleteFavourite()
+        } else {
+            list[index].isFavourite = true
+            dataSource.saveFavourite()
+        }
+        viewDelegate?.showList(index: index)
+    }
     
     /**
      * Called when cell pressed long.

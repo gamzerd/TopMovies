@@ -15,6 +15,16 @@ final class MovieListTableViewCell: UITableViewCell {
     @IBOutlet weak var overview: UILabel!
     @IBOutlet weak var average: UILabel!
     @IBOutlet weak var poster: UIImageView!
+    @IBOutlet weak var favouriteButton: UIButton!
+    
+    var buttonClosure : (() -> Void)? = nil
+    
+    @IBAction func favouriteButtonClicked(_ sender: Any) {
+        
+        if let favouriteButtonClicked = self.buttonClosure {
+            favouriteButtonClicked()
+        }
+    }
     
     let redAttribute = [NSAttributedString.Key.foregroundColor: UIColor.red]
     let orangeAttribute = [NSAttributedString.Key.foregroundColor: UIColor.orange]
@@ -24,7 +34,7 @@ final class MovieListTableViewCell: UITableViewCell {
      * Setups cell.
      * @param movie: movie object to set cell.
      */
-    func setup(with movie: Movie) {
+    func setup(with movie: FavMovie) {
         
         selectionStyle = .none
         
@@ -33,6 +43,13 @@ final class MovieListTableViewCell: UITableViewCell {
         overview.text = movie.overview
         
         poster.setImage(with: AppConstants.API.baseImagePath + movie.posterPath)
+        
+        
+        if movie.isFavourite {
+            favouriteButton.setImage(UIImage(named: "star"), for: .normal)
+        } else {
+            favouriteButton.setImage(UIImage(named: "starEmpty"), for: .normal)
+        }
         
         var colorAttribute : [NSAttributedString.Key:UIColor] = [:]
         let averageValue = Int(movie.voteAverage * 10)

@@ -56,6 +56,7 @@ class Service: ServiceProtocol {
         let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
             guard let data = data else { return }
             do {
+             //   print(String(data: Data(data), encoding: .utf8) as Any)
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .formatted(DateFormatter.yyyyMMdd)
                 let decodedResponse = try decoder.decode(responseType, from: data)

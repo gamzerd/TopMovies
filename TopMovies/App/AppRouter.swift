@@ -29,7 +29,7 @@ final class AppRouter {
 }
 
 protocol ShowDetailsCoordinatorDelegate: class {
-    func showDetails(movie: Movie, fromViewController: UIViewController)
+    func showDetails(movie: FavMovie, fromViewController: UIViewController)
 }
 
 extension AppRouter: ShowDetailsCoordinatorDelegate {
@@ -38,7 +38,7 @@ extension AppRouter: ShowDetailsCoordinatorDelegate {
      * Shows details of movie list.
      * @param movie: Object to set details, fromViewController: controller to show detail
      */
-    func showDetails(movie: Movie, fromViewController: UIViewController) {
+    func showDetails(movie: FavMovie, fromViewController: UIViewController) {
         let viewModel = MovieDetailViewModel(movie: movie)
         let movieDetailVC = MovieDetailBuilder.make(with: viewModel)
         fromViewController.show(movieDetailVC, sender: nil)

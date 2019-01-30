@@ -10,9 +10,9 @@ import Foundation
 
 final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
-    var movie: Movie
+    var movie: FavMovie
     
-    init(movie: Movie) {
+    init(movie: FavMovie) {
         self.movie = movie
     }
     

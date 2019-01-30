@@ -31,12 +31,12 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8M-aM-mmC">
-                        <rect key="frame" x="181" y="31" width="183" height="20"/>
+                        <rect key="frame" x="181" y="25" width="183" height="20"/>
                         <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="16"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zi1-7Z-PVV">
-                        <rect key="frame" x="180" y="11" width="208" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zi1-7Z-PVV">
+                        <rect key="frame" x="180" y="5" width="190" height="21"/>
                         <fontDescription key="fontDescription" name="GeezaPro-Bold" family="Geeza Pro" pointSize="17"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -46,6 +46,17 @@
                         <color key="textColor" red="0.14806862361899986" green="1" blue="0.18009314327601877" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWi-A8-bOF">
+                        <rect key="frame" x="372" y="5" width="36" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="36" id="J4j-B9-Vbw"/>
+                            <constraint firstAttribute="height" constant="36" id="ZAr-IE-JET"/>
+                        </constraints>
+                        <state key="normal" image="starEmpty"/>
+                        <connections>
+                            <action selector="favouriteButtonClicked:" destination="c5B-pN-hMk" eventType="touchUpInside" id="S4O-aI-1ME"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="F9a-x6-gVa" secondAttribute="trailing" constant="20" id="0U5-Jc-gHQ"/>
@@ -53,13 +64,15 @@
                     <constraint firstAttribute="bottom" secondItem="DtI-Rk-Rme" secondAttribute="bottom" constant="5" id="2pF-Te-gqy"/>
                     <constraint firstItem="J8M-aM-mmC" firstAttribute="top" secondItem="Zi1-7Z-PVV" secondAttribute="bottom" constant="-1" id="3eF-3r-wig"/>
                     <constraint firstAttribute="bottom" secondItem="F9a-x6-gVa" secondAttribute="bottom" constant="30" id="5tD-Zv-luK"/>
+                    <constraint firstItem="Zi1-7Z-PVV" firstAttribute="top" secondItem="DtI-Rk-Rme" secondAttribute="top" id="6ZJ-g0-kE3"/>
                     <constraint firstItem="Zi1-7Z-PVV" firstAttribute="leading" secondItem="F9a-x6-gVa" secondAttribute="leading" id="7ra-i0-fbj"/>
                     <constraint firstAttribute="trailing" secondItem="S16-UD-IML" secondAttribute="trailing" constant="11" id="BnW-01-fbp"/>
                     <constraint firstItem="DtI-Rk-Rme" firstAttribute="top" secondItem="ecW-YZ-1WY" secondAttribute="top" constant="5" id="Llt-Gf-MZS"/>
-                    <constraint firstItem="Zi1-7Z-PVV" firstAttribute="trailing" secondItem="F9a-x6-gVa" secondAttribute="trailing" constant="-10" id="Nlh-43-Pyi"/>
-                    <constraint firstItem="Zi1-7Z-PVV" firstAttribute="top" secondItem="ecW-YZ-1WY" secondAttribute="top" constant="11" id="OVI-i5-2OB"/>
+                    <constraint firstItem="Zi1-7Z-PVV" firstAttribute="trailing" secondItem="F9a-x6-gVa" secondAttribute="trailing" constant="-28" id="Nlh-43-Pyi"/>
+                    <constraint firstAttribute="trailing" secondItem="RWi-A8-bOF" secondAttribute="trailing" constant="10" id="PQt-Z1-2RM"/>
+                    <constraint firstItem="RWi-A8-bOF" firstAttribute="top" secondItem="ecW-YZ-1WY" secondAttribute="top" constant="5" id="WtM-dG-yI9"/>
                     <constraint firstItem="F9a-x6-gVa" firstAttribute="leading" secondItem="DtI-Rk-Rme" secondAttribute="trailing" constant="10" id="XpG-Qf-8eU"/>
-                    <constraint firstItem="J8M-aM-mmC" firstAttribute="trailing" secondItem="Zi1-7Z-PVV" secondAttribute="trailing" constant="-24" id="hoo-NY-ZsW"/>
+                    <constraint firstItem="J8M-aM-mmC" firstAttribute="trailing" secondItem="Zi1-7Z-PVV" secondAttribute="trailing" constant="-6" id="hoo-NY-ZsW"/>
                     <constraint firstItem="DtI-Rk-Rme" firstAttribute="leading" secondItem="ecW-YZ-1WY" secondAttribute="leading" constant="10" id="iOh-0v-Yjo"/>
                     <constraint firstItem="J8M-aM-mmC" firstAttribute="leading" secondItem="Zi1-7Z-PVV" secondAttribute="leading" constant="1" id="qX5-eA-yiK"/>
                     <constraint firstItem="F9a-x6-gVa" firstAttribute="top" secondItem="ecW-YZ-1WY" secondAttribute="top" constant="60" id="zs3-yn-pJH"/>
@@ -68,12 +81,16 @@
             <viewLayoutGuide key="safeArea" id="cXK-zu-2jr"/>
             <connections>
                 <outlet property="average" destination="S16-UD-IML" id="fEM-SJ-yxs"/>
+                <outlet property="favouriteButton" destination="RWi-A8-bOF" id="SQt-lg-8i9"/>
                 <outlet property="overview" destination="F9a-x6-gVa" id="23O-mn-tL0"/>
                 <outlet property="poster" destination="DtI-Rk-Rme" id="zin-Li-Yr5"/>
                 <outlet property="releaseDate" destination="J8M-aM-mmC" id="2Q3-nM-iJf"/>
                 <outlet property="title" destination="Zi1-7Z-PVV" id="WrR-0G-Hq9"/>
             </connections>
-            <point key="canvasLocation" x="-773" y="-199"/>
+            <point key="canvasLocation" x="-774.39999999999998" y="-199.70014992503749"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="starEmpty" width="57.599998474121094" height="57.599998474121094"/>
+    </resources>
 </document>

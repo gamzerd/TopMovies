@@ -14,4 +14,8 @@ protocol DataSourceProtocol {
      * Retrieves the movie data from.
      */
     func getMovies(page: Int, callback: @escaping (Array<Movie>?, Error?) -> Void)
+    
+    func saveFavourite()
+    
+    func deleteFavourite()
 }
