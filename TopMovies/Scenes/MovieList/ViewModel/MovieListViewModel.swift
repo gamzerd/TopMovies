@@ -53,13 +53,13 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
      * @param list: list of movie.
      * @param error: error if service fails.
      */
-    func didReceiveMovies(list: Array<Movie>?, error: Error?) {
+    func didReceiveMovies(list: MoviesResponse?, error: Error?) {
         
         if let list = list {
             
             let favIdArray = dataSource.getFavouritesList()
             
-            let favList = list.map({                
+            let favList = list.results.map({
                 return FavMovie.initFromMovie(movie: $0, isFavourite: favIdArray.contains($0.id))
             })
             

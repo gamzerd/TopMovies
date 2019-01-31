@@ -27,13 +27,13 @@ class MoviesDataSource: DataSourceProtocol {
      * @param movie: movie object.
      * @param callback: completion callback.
      */
-    func getMovies(page: Int, callback: @escaping (Array<Movie>?, Error?) -> Void){
+    func getMovies(page: Int, callback: @escaping (MoviesResponse?, Error?) -> Void){
         
         let requestParams = MoviesRequest(page: String(page))
         
         self.api.get(path: "/movie/popular", params: requestParams, responseType: MoviesResponse.self, callback:
             { (data: MoviesResponse?, error: Error?) -> Void in
-                callback(data?.results, nil)
+                callback(data, nil)
         })
         
     }

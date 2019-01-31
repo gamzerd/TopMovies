@@ -23,7 +23,7 @@ class Movie: Codable {
          voteAverage: Double = 1.0,
          posterPath: String = "",
          overview: String = "",
-         releaseDate: Date)
+         releaseDate: Date = Date())
     {
         self.title = title
         self.id = id

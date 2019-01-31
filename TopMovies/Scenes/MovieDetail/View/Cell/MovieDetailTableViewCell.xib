@@ -21,6 +21,10 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AS8-W1-MSh">
                         <rect key="frame" x="30" y="54" width="240" height="345.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="345.5" id="EnU-sW-54R"/>
+                            <constraint firstAttribute="width" constant="240" id="sdz-d8-Gfy"/>
+                        </constraints>
                     </imageView>
                 </subviews>
                 <constraints>

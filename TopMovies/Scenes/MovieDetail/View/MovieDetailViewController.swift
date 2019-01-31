@@ -22,18 +22,25 @@ final class MovieDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showData()
         tableView.register(MovieDetailTableViewCell.self)
+        showData()
     }
     
-    @objc func addTapped() {
+    @objc func favouriteButtonClicked() {
         viewModel.didFavouriteButtonClick()
     }
     
     func showData() {
         title = viewModel.getTitle()
+        
         let image = UIImage(named: viewModel.getFavouriteIconName())
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(addTapped))
+        let button = UIButton(type: .custom)
+        
+        button.setImage((image), for: .normal)
+        button.addTarget(self, action: #selector(favouriteButtonClicked), for: .touchUpInside)
+        button.frame = CGRect(x: 0, y: 0, width: 36, height: 36)
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
         
         tableView.reloadData()
     }
