@@ -19,7 +19,7 @@ class Service: ServiceProtocol {
         self.defaultParams = defaultParams
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = AppConstants.API.dateFormat
         
         decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .formatted(dateFormatter)

@@ -23,6 +23,15 @@ class MovieistViewModelTests: XCTestCase {
         XCTAssertEqual(vm.list.count, 0)
     }
     
+    func testGetTitle() {
+        
+        // given
+        let vm = MovieListViewModel(dataSource: MockDataSource())
+        
+        // when, then
+        XCTAssertEqual(vm.getTitle(), "Movie List")
+    }
+    
 }
 
 enum APIError: Error {
