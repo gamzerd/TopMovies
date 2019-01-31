@@ -9,11 +9,13 @@
 import Foundation
 import UIKit
 
-final class MovieListViewModel: MovieListViewModelProtocol {
+final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegateProtocol {
     
     var list: [FavMovie] = []
     
     var currentPageNumber = 1
+    
+    var delegateIndex = 0
     
     weak var viewDelegate: MovieListViewProtocol?
     
@@ -21,6 +23,7 @@ final class MovieListViewModel: MovieListViewModelProtocol {
     
     init (dataSource: DataSourceProtocol) {
         self.dataSource = dataSource
+        delegateIndex = dataSource.addDelegate(delegate: self)
     }
     
     /**
@@ -53,8 +56,11 @@ final class MovieListViewModel: MovieListViewModelProtocol {
     func didReceiveMovies(list: Array<Movie>?, error: Error?) {
         
         if let list = list {
-            let favList = list.map({
-                return FavMovie.initFromMovie(movie: $0)
+            
+            let favIdArray = dataSource.getFavouritesList()
+            
+            let favList = list.map({                
+                return FavMovie.initFromMovie(movie: $0, isFavourite: favIdArray.contains($0.id))
             })
             
             self.list.append(contentsOf: favList)
@@ -63,6 +69,17 @@ final class MovieListViewModel: MovieListViewModelProtocol {
         
         if error != nil {
             viewDelegate?.showError(message: "Fetching list failed!")
+        }
+    }
+    
+    func didChangeMovieFavouriteStatus(id: Int, isFavourite: Bool) {
+        
+        let index = list.firstIndex { (movie) -> Bool in
+            return movie.id == id
+        }
+        if  index != nil && index! > -1 {
+            list[index!].isFavourite = isFavourite
+            viewDelegate?.showList(index: index!)
         }
     }
     
@@ -75,11 +92,9 @@ final class MovieListViewModel: MovieListViewModelProtocol {
     func didFavouriteButtonClick(index: Int) {
      
         if list[index].isFavourite {
-            list[index].isFavourite = false
-            dataSource.deleteFavourite()
+            dataSource.deleteFavourite(id: list[index].id)
         } else {
-            list[index].isFavourite = true
-            dataSource.saveFavourite()
+            dataSource.saveFavourite(id: list[index].id)
         }
         viewDelegate?.showList(index: index)
     }
@@ -91,7 +106,11 @@ final class MovieListViewModel: MovieListViewModelProtocol {
      */
     func didPressLong(index: Int) -> UIViewController {
         
-        let detailViewModel = MovieDetailViewModel(movie: list[index])
+        let detailViewModel = MovieDetailViewModel(dataSource: app.dataSource, movie: list[index])
         return MovieDetailBuilder.make(with: detailViewModel)
+    }
+    
+    deinit {
+        dataSource.removeDelegate(index: delegateIndex)
     }
 }

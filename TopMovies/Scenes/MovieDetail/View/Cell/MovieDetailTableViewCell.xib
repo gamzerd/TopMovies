@@ -22,21 +22,11 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AS8-W1-MSh">
                         <rect key="frame" x="30" y="54" width="240" height="345.5"/>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iuf-36-N4f">
-                        <rect key="frame" x="248" y="11" width="36" height="36"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="36" id="Wxo-WB-PVh"/>
-                            <constraint firstAttribute="height" constant="36" id="auO-y2-wl5"/>
-                        </constraints>
-                        <state key="normal" title="Button" image="starEmpty"/>
-                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="AS8-W1-MSh" firstAttribute="leading" secondItem="JZQ-XZ-1sd" secondAttribute="leading" constant="30" id="4AD-Ps-HQa"/>
-                    <constraint firstItem="iuf-36-N4f" firstAttribute="top" secondItem="JZQ-XZ-1sd" secondAttribute="top" constant="11" id="9Cn-Nh-wxc"/>
                     <constraint firstItem="AS8-W1-MSh" firstAttribute="centerY" secondItem="JZQ-XZ-1sd" secondAttribute="centerY" id="J4s-yC-36o"/>
                     <constraint firstItem="AS8-W1-MSh" firstAttribute="centerX" secondItem="JZQ-XZ-1sd" secondAttribute="centerX" id="TJK-nj-L4y"/>
-                    <constraint firstAttribute="trailing" secondItem="iuf-36-N4f" secondAttribute="trailing" constant="16" id="j2q-CE-TVt"/>
                     <constraint firstItem="AS8-W1-MSh" firstAttribute="top" secondItem="JZQ-XZ-1sd" secondAttribute="top" constant="54" id="rrS-uU-hwK"/>
                 </constraints>
             </tableViewCellContentView>
@@ -47,7 +37,4 @@
             <point key="canvasLocation" x="32" y="120.53973013493254"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="starEmpty" width="57.599998474121094" height="57.599998474121094"/>
-    </resources>
 </document>

@@ -39,7 +39,8 @@ extension AppRouter: ShowDetailsCoordinatorDelegate {
      * @param movie: Object to set details, fromViewController: controller to show detail
      */
     func showDetails(movie: FavMovie, fromViewController: UIViewController) {
-        let viewModel = MovieDetailViewModel(movie: movie)
+        
+        let viewModel = MovieDetailViewModel(dataSource: app.dataSource, movie: movie)
         let movieDetailVC = MovieDetailBuilder.make(with: viewModel)
         fromViewController.show(movieDetailVC, sender: nil)
     }

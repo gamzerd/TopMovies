@@ -8,10 +8,23 @@
 
 import Foundation
 
-protocol MovieDetailViewModelProtocol {
+protocol MovieDetailViewModelProtocol: class{
     
+    var viewDelegate: MovieDetailViewProtocol? { get set }
+
     var movie: FavMovie { get set }
     
     func getTitle() -> String
     
+    func getFavouriteIconName() -> String
+    
+    func didFavouriteButtonClick()
+    
 }
+
+protocol MovieDetailViewProtocol: class {
+    
+    func invalidateData()
+}
+
+

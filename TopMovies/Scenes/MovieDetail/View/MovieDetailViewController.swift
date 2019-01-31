@@ -17,12 +17,33 @@ final class MovieDetailViewController: UIViewController {
     convenience init(viewModel: MovieDetailViewModelProtocol) {
         self.init()
         self.viewModel = viewModel
+        self.viewModel.viewDelegate = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = viewModel.getTitle()
+        showData()
         tableView.register(MovieDetailTableViewCell.self)
+    }
+    
+    @objc func addTapped() {
+        viewModel.didFavouriteButtonClick()
+    }
+    
+    func showData() {
+        title = viewModel.getTitle()
+        let image = UIImage(named: viewModel.getFavouriteIconName())
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(addTapped))
+        
+        tableView.reloadData()
+    }
+}
+
+extension MovieDetailViewController: MovieDetailViewProtocol {
+    
+    func invalidateData() {
+        
+        showData()
     }
 }
 

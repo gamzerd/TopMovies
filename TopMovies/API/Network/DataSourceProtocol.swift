@@ -15,7 +15,20 @@ protocol DataSourceProtocol {
      */
     func getMovies(page: Int, callback: @escaping (Array<Movie>?, Error?) -> Void)
     
-    func saveFavourite()
+    func saveFavourite(id: Int)
     
-    func deleteFavourite()
+    func deleteFavourite(id: Int)
+    
+    func getFavouritesList() -> [Int]
+    
+    func addDelegate(delegate: DataSourceDelegateProtocol) -> Int
+    
+    func removeDelegate(index: Int)
+
 }
+
+protocol DataSourceDelegateProtocol: class {
+    
+    func didChangeMovieFavouriteStatus(id: Int, isFavourite: Bool)
+}
+
