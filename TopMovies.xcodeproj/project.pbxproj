@@ -38,7 +38,6 @@
 		FA0981EC21FBBFE4002B3099 /* MovieDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0981EB21FBBFE4002B3099 /* MovieDetailTableViewCell.xib */; };
 		FA0981EE21FBD40E002B3099 /* MoviesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981ED21FBD40E002B3099 /* MoviesRequest.swift */; };
 		FA0981F021FC03AF002B3099 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981EF21FC03AF002B3099 /* DateExtensions.swift */; };
-		FA0981F221FC05B2002B3099 /* DateFormatterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981F121FC05B2002B3099 /* DateFormatterExtensions.swift */; };
 		FA67563722020520005FDFEE /* FavMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA67563622020520005FDFEE /* FavMovie.swift */; };
 		FA67563A22034CA2005FDFEE /* AppContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA67563922034CA2005FDFEE /* AppContainerTests.swift */; };
 		FA67563C22034CCB005FDFEE /* AppRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA67563B22034CCB005FDFEE /* AppRouterTests.swift */; };
@@ -92,7 +91,6 @@
 		FA0981EB21FBBFE4002B3099 /* MovieDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailTableViewCell.xib; sourceTree = "<group>"; };
 		FA0981ED21FBD40E002B3099 /* MoviesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesRequest.swift; sourceTree = "<group>"; };
 		FA0981EF21FC03AF002B3099 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
-		FA0981F121FC05B2002B3099 /* DateFormatterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtensions.swift; sourceTree = "<group>"; };
 		FA67563622020520005FDFEE /* FavMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavMovie.swift; sourceTree = "<group>"; };
 		FA67563922034CA2005FDFEE /* AppContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainerTests.swift; sourceTree = "<group>"; };
 		FA67563B22034CCB005FDFEE /* AppRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouterTests.swift; sourceTree = "<group>"; };
@@ -234,7 +232,6 @@
 				FA0981D321FB66FA002B3099 /* UITableViewExtensions.swift */,
 				FA0981DD21FB6C95002B3099 /* UIImageViewExtensions.swift */,
 				FA0981EF21FC03AF002B3099 /* DateExtensions.swift */,
-				FA0981F121FC05B2002B3099 /* DateFormatterExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -507,7 +504,6 @@
 				FA09818A21FB16EC002B3099 /* MovieListViewController.swift in Sources */,
 				FA0981B421FB1981002B3099 /* MoviesDataSource.swift in Sources */,
 				FA0981DE21FB6C95002B3099 /* UIImageViewExtensions.swift in Sources */,
-				FA0981F221FC05B2002B3099 /* DateFormatterExtensions.swift in Sources */,
 				FA67563722020520005FDFEE /* FavMovie.swift in Sources */,
 				FA0981D621FB69BB002B3099 /* MovieListBuilder.swift in Sources */,
 				FA0981E821FBBD6D002B3099 /* MovieDetailViewModel.swift in Sources */,

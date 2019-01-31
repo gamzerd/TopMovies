@@ -12,10 +12,17 @@ class Service: ServiceProtocol {
     
     var url: String
     var defaultParams: [String:String]?
+    var decoder: JSONDecoder
     
     init(url: String, defaultParams: [String:String]) {
         self.url = url
         self.defaultParams = defaultParams
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
     }
     /**
      * Makes a GET http request to the given path and passes the result to the callback.
@@ -56,10 +63,7 @@ class Service: ServiceProtocol {
         let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
             guard let data = data else { return }
             do {
-             //   print(String(data: Data(data), encoding: .utf8) as Any)
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .formatted(DateFormatter.yyyyMMdd)
-                let decodedResponse = try decoder.decode(responseType, from: data)
+                let decodedResponse = try self.decoder.decode(responseType, from: data)
                 
                 // return result to the callback
                 callback(decodedResponse, nil)

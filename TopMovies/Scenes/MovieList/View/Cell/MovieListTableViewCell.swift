@@ -42,9 +42,9 @@ final class MovieListTableViewCell: UITableViewCell {
         releaseDate.text = movie.releaseDate.formatDate()
         overview.text = movie.overview
         
-        poster.setImage(with: AppConstants.API.baseImagePath + movie.posterPath)
-        
-        
+        poster.image = nil
+        poster.setImage(with: AppConstants.API.baseThumbnailPath + movie.posterPath)
+            
         if movie.isFavourite {
             favouriteButton.setImage(UIImage(named: "star"), for: .normal)
         } else {

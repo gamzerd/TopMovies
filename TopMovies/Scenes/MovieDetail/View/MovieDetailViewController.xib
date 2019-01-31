@@ -21,8 +21,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" sectionIndexMinimumDisplayRowCount="1" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KWH-7D-wfS">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" sectionIndexMinimumDisplayRowCount="1" allowsSelection="NO" rowHeight="500" estimatedRowHeight="500" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KWH-7D-wfS">
+                    <rect key="frame" x="0.0" y="40" width="375" height="627"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="vHK-Gx-dbF"/>
@@ -33,7 +33,7 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="E5i-6p-UAY" firstAttribute="trailing" secondItem="KWH-7D-wfS" secondAttribute="trailing" id="9zX-ko-heR"/>
-                <constraint firstItem="E5i-6p-UAY" firstAttribute="top" secondItem="KWH-7D-wfS" secondAttribute="top" constant="20" id="KDa-Dn-ngu"/>
+                <constraint firstItem="E5i-6p-UAY" firstAttribute="top" secondItem="KWH-7D-wfS" secondAttribute="top" constant="-20" id="KDa-Dn-ngu"/>
                 <constraint firstItem="E5i-6p-UAY" firstAttribute="bottom" secondItem="KWH-7D-wfS" secondAttribute="bottom" id="P2Y-Pu-sRO"/>
                 <constraint firstItem="KWH-7D-wfS" firstAttribute="leading" secondItem="E5i-6p-UAY" secondAttribute="leading" id="vzs-WU-pE4"/>
             </constraints>
