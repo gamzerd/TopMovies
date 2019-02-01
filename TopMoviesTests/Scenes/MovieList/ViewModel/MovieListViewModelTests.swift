@@ -10,7 +10,7 @@ import XCTest
 
 @testable import TopMovies
 
-class MovieistViewModelTests: XCTestCase {
+class MovieListViewModelTests: XCTestCase {
     
     func testInit() {
         
@@ -32,6 +32,73 @@ class MovieistViewModelTests: XCTestCase {
         XCTAssertEqual(vm.getTitle(), "Movie List")
     }
     
+    func testDidRowSelect() {
+        
+        // given
+        let vm = MovieListViewModel(dataSource: MockDataSource())
+        vm.list = [FavMovie(title: "Glass"), FavMovie(title: "Iron Man")]
+        
+        let view = MockView()
+        vm.viewDelegate = view
+        
+        // when
+        vm.didRowSelect(index: 0)
+        
+        // then
+        XCTAssertEqual(view.openPageCount, 1)
+        XCTAssertNotNil(view.openPageParameter)
+        XCTAssertEqual(view.openPageParameter?.title, "Glass")
+    }
+    
+    func testLoad() {
+        
+        // given
+        let ds = MockDataSource()
+        let vm = MovieListViewModel(dataSource: ds)
+        
+        // when
+        vm.load()
+        
+        // then
+        XCTAssertEqual(ds.getMoviesCount, 1)
+    }
+    
+    func testDidReceiveMovies() {
+        
+        // given
+        let vm = MovieListViewModel(dataSource: MockDataSource())
+        
+        let view = MockView()
+        vm.viewDelegate = view
+        
+        // when
+        vm.didReceiveMovies(list: MoviesResponse(results: [Movie(title: "Glass"), Movie(title:  "Iron Man"), Movie(title: "Amelie")]), error: nil)
+        
+        // then
+        XCTAssertNotNil(vm.list)
+        XCTAssertEqual(vm.list.count, 3)
+        
+        XCTAssertEqual(view.showListCallCount, 1)
+    }
+    
+    func testDidReceiveMoviesWithError() {
+        
+        // given
+        let vm = MovieListViewModel(dataSource: MockDataSource())
+        
+        let view = MockView()
+        vm.viewDelegate = view
+        
+        // when
+        vm.didReceiveMovies(list: nil, error: APIError.NetworkFail())
+        
+        // then
+        XCTAssertNotNil(vm.list)
+        XCTAssertEqual(vm.list.count, 0)
+        
+        XCTAssertEqual(view.showErrorCount, 1)
+        XCTAssertEqual(view.showErrorParameter, "Fetching list failed!")
+    }
 }
 
 enum APIError: Error {

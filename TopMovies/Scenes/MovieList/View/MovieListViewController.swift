@@ -12,7 +12,7 @@ final class MovieListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private var viewModel: MovieListViewModelProtocol!
+    var viewModel: MovieListViewModelProtocol!
     weak var delegate: ShowDetailsCoordinatorDelegate!
     
     convenience init(viewModel: MovieListViewModelProtocol) {
@@ -34,14 +34,13 @@ extension MovieListViewController: MovieListViewProtocol {
     
     /**
      * Shows movie list.
+     * @param index: to reload in tableview
      */
     func showList(index: Int) {
-        DispatchQueue.main.async {
-            if index == -1 {
-                self.tableView.reloadData()
-            } else {
-                self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
-            }
+        if index == -1 {
+            self.tableView.reloadData()
+        } else {
+            self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
         }
     }
     
@@ -85,11 +84,6 @@ extension MovieListViewController: UITableViewDataSource {
         
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 240
-    }
-    
 }
 
 extension MovieListViewController: UITableViewDelegate {

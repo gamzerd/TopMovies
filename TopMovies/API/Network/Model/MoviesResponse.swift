@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MoviesResponse: Codable {
+struct MoviesResponse: Codable {
     
     var results: Array<Movie>
     

@@ -25,20 +25,83 @@ class MoviesDataSourceTests: XCTestCase {
         let service = MockService(url: "url/", defaultParams: [:])
         ds.api = service
         
+        let expectation = self.expectation(description: "callback")
+        
         // when
         var responseReturnedFromCallback: MoviesResponse?
         ds.getMovies(page: 1, callback: { response,_ in
             responseReturnedFromCallback = response
+            expectation.fulfill()
         })
         
         // then
-        DispatchQueue.main.async() {
-            XCTAssertEqual(service.callCount, 1)
-            XCTAssertEqual(service.callParameterPath!, "/movie/popular")
-            XCTAssertEqual(responseReturnedFromCallback!.results.count, 2)
-            XCTAssertEqual(responseReturnedFromCallback!.results[0].title, "Glass")
-            XCTAssertEqual(responseReturnedFromCallback!.results[1].title, "Titanic")
-        }
+        waitForExpectations(timeout: 10, handler: nil)
+        XCTAssertEqual(service.callCount, 1)
+        XCTAssertEqual(service.callParameterPath!, "/movie/popular")
+        XCTAssertEqual(responseReturnedFromCallback!.results.count, 2)
+        XCTAssertEqual(responseReturnedFromCallback!.results[0].title, "Glass")
+        XCTAssertEqual(responseReturnedFromCallback!.results[1].title, "Titanic")
+    }
+    
+    func testSaveFavourite() {
+       
+        // given
+        let ds = MoviesDataSource()
+        
+        let mockDefaults = MockDefaults(returnValueOfArrayFunc: [1, 3])
+        ds.defaults = mockDefaults
+        
+        let delegate1 = MockDataSourceDelegate()
+        _ = ds.addDelegate(delegate: delegate1)
+        
+        let delegate2 = MockDataSourceDelegate()
+        _ = ds.addDelegate(delegate: delegate2)
+        
+        // when
+        ds.saveFavourite(id: 2)
+        
+        // then
+        XCTAssertEqual(delegate1.didChangeMovieFavouriteStatusCount, 1)
+        XCTAssertEqual(delegate1.didChangeMovieFavouriteStatusParameterId, 2)
+        XCTAssertEqual(delegate1.didChangeMovieFavouriteStatusParameterIsFavourite, true)
+        
+        XCTAssertEqual(delegate2.didChangeMovieFavouriteStatusCount, 1)
+        XCTAssertEqual(delegate2.didChangeMovieFavouriteStatusParameterId, 2)
+        XCTAssertEqual(delegate2.didChangeMovieFavouriteStatusParameterIsFavourite, true)
+        
+        XCTAssertEqual(mockDefaults.setValueParameter as? [Int], [1, 3, 2])
+        XCTAssertEqual(mockDefaults.setDefaultNameParameter, "FavouriteMovieListIds")
+        
+    }
+    
+    func testDeleteFavourite() {
+        
+        // given
+        let ds = MoviesDataSource()
+        
+        let mockDefaults = MockDefaults(returnValueOfArrayFunc: [1, 3])
+        ds.defaults = mockDefaults
+        
+        let delegate1 = MockDataSourceDelegate()
+        _ = ds.addDelegate(delegate: delegate1)
+        
+        let delegate2 = MockDataSourceDelegate()
+        _ = ds.addDelegate(delegate: delegate2)
+        
+        // when
+        ds.deleteFavourite(id: 3)
+        
+        // then
+        XCTAssertEqual(delegate1.didChangeMovieFavouriteStatusCount, 1)
+        XCTAssertEqual(delegate1.didChangeMovieFavouriteStatusParameterId, 3)
+        XCTAssertEqual(delegate1.didChangeMovieFavouriteStatusParameterIsFavourite, false)
+       
+        XCTAssertEqual(delegate2.didChangeMovieFavouriteStatusCount, 1)
+        XCTAssertEqual(delegate2.didChangeMovieFavouriteStatusParameterId, 3)
+        XCTAssertEqual(delegate2.didChangeMovieFavouriteStatusParameterIsFavourite, false)
+        
+        XCTAssertEqual(mockDefaults.setValueParameter as? [Int], [1])
+        XCTAssertEqual(mockDefaults.setDefaultNameParameter, "FavouriteMovieListIds")
     }
     
 }
@@ -55,6 +118,42 @@ class MockService: Service {
         let response = MoviesResponse(results: list)
         callback((response as! D), nil)
     }
+}
+
+class MockDefaults: UserDefaults {
+    
+    var returnValueOfArrayFunc: [Any]?
+    
+    var setValueParameter: Any?
+    var setDefaultNameParameter: String?
+    
+    convenience init(returnValueOfArrayFunc: [Any] = []) {
+        self.init()
+        self.returnValueOfArrayFunc = returnValueOfArrayFunc
+    }
+    
+    override func set(_ value: (Any)?, forKey defaultName: String) {
+        setValueParameter = value
+        setDefaultNameParameter = defaultName
+    }
+    
+    override func array(forKey defaultName: String) -> [Any]? {
+        return returnValueOfArrayFunc
+    }
+}
+
+class MockDataSourceDelegate: DataSourceDelegateProtocol {
+    
+    var didChangeMovieFavouriteStatusCount = 0
+    var didChangeMovieFavouriteStatusParameterId: Int?
+    var didChangeMovieFavouriteStatusParameterIsFavourite: Bool?
+    
+    func didChangeMovieFavouriteStatus(id: Int, isFavourite: Bool) {
+        didChangeMovieFavouriteStatusCount += 1
+        didChangeMovieFavouriteStatusParameterId = id
+        didChangeMovieFavouriteStatusParameterIsFavourite = isFavourite
+    }
+    
 }
 
 

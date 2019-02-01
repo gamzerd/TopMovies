@@ -15,6 +15,8 @@ class MoviesDataSource: DataSourceProtocol {
     
     var delegates: [DataSourceDelegateProtocol] = []
 
+    final let favMovieListIdsKey = "FavouriteMovieListIds"
+    
     init() {
         self.api = Service(
             url: AppConstants.API.base_url,
@@ -33,23 +35,33 @@ class MoviesDataSource: DataSourceProtocol {
         
         self.api.get(path: "/movie/popular", params: requestParams, responseType: MoviesResponse.self, callback:
             { (data: MoviesResponse?, error: Error?) -> Void in
-                callback(data, nil)
+                DispatchQueue.main.async {
+                    callback(data, nil)
+                }
         })
         
     }
     
+    /**
+     * Saves favourite with given id
+     * @param id: movie id
+     */
     func saveFavourite(id: Int) {
         
         var array = getFavouritesList()
         array.append(id)
         
-        defaults.set(array, forKey: "FavouriteMovieListIds")
+        defaults.set(array, forKey: favMovieListIdsKey)
         
         delegates.forEach { (delegate) in
             delegate.didChangeMovieFavouriteStatus(id: id, isFavourite: true)
         }
     }
     
+    /**
+     * Deletes favourite with given id
+     * @param id: movie id
+     */
     func deleteFavourite(id: Int) {
        
         var array = getFavouritesList()
@@ -58,7 +70,7 @@ class MoviesDataSource: DataSourceProtocol {
             array.remove(at: index!)
         }
 
-        defaults.set(array, forKey: "FavouriteMovieListIds")
+        defaults.set(array, forKey: favMovieListIdsKey)
         
         delegates.forEach { (delegate) in
             delegate.didChangeMovieFavouriteStatus(id: id, isFavourite: false)
@@ -66,7 +78,7 @@ class MoviesDataSource: DataSourceProtocol {
     }
     
     func getFavouritesList() -> [Int] {
-        return defaults.array(forKey: "FavouriteMovieListIds")  as? [Int] ?? [Int]()
+        return defaults.array(forKey: favMovieListIdsKey) as? [Int] ?? [Int]()
     }
     
     func addDelegate(delegate: DataSourceDelegateProtocol) -> Int {

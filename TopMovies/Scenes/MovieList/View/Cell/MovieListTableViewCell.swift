@@ -67,7 +67,6 @@ final class MovieListTableViewCell: UITableViewCell {
         let range = NSRange(location: 2, length: 2)
         attrString.addAttributes(fontAttribute, range: range)
         
-        // set attributed text on a UILabel
        average.attributedText = attrString
     }
 }

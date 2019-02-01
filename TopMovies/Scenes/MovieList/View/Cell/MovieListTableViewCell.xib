@@ -25,8 +25,8 @@
                             <constraint firstAttribute="width" constant="160" id="y90-Qr-CJV"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9a-x6-gVa">
-                        <rect key="frame" x="180" y="60" width="218" height="149.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9a-x6-gVa">
+                        <rect key="frame" x="180" y="55" width="218" height="154.5"/>
                         <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="16"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -35,7 +35,7 @@
                         <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="16"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zi1-7Z-PVV">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zi1-7Z-PVV">
                         <rect key="frame" x="180" y="5" width="190" height="21"/>
                         <fontDescription key="fontDescription" name="GeezaPro-Bold" family="Geeza Pro" pointSize="17"/>
                         <nil key="highlightedColor"/>
@@ -67,6 +67,7 @@
                     <constraint firstItem="Zi1-7Z-PVV" firstAttribute="top" secondItem="DtI-Rk-Rme" secondAttribute="top" id="6ZJ-g0-kE3"/>
                     <constraint firstItem="Zi1-7Z-PVV" firstAttribute="leading" secondItem="F9a-x6-gVa" secondAttribute="leading" id="7ra-i0-fbj"/>
                     <constraint firstAttribute="trailing" secondItem="S16-UD-IML" secondAttribute="trailing" constant="11" id="BnW-01-fbp"/>
+                    <constraint firstItem="F9a-x6-gVa" firstAttribute="top" secondItem="J8M-aM-mmC" secondAttribute="bottom" constant="10" id="H2U-7o-HT8"/>
                     <constraint firstItem="DtI-Rk-Rme" firstAttribute="top" secondItem="ecW-YZ-1WY" secondAttribute="top" constant="5" id="Llt-Gf-MZS"/>
                     <constraint firstItem="Zi1-7Z-PVV" firstAttribute="trailing" secondItem="F9a-x6-gVa" secondAttribute="trailing" constant="-28" id="Nlh-43-Pyi"/>
                     <constraint firstAttribute="trailing" secondItem="RWi-A8-bOF" secondAttribute="trailing" constant="10" id="PQt-Z1-2RM"/>
@@ -75,7 +76,7 @@
                     <constraint firstItem="J8M-aM-mmC" firstAttribute="trailing" secondItem="Zi1-7Z-PVV" secondAttribute="trailing" constant="-6" id="hoo-NY-ZsW"/>
                     <constraint firstItem="DtI-Rk-Rme" firstAttribute="leading" secondItem="ecW-YZ-1WY" secondAttribute="leading" constant="10" id="iOh-0v-Yjo"/>
                     <constraint firstItem="J8M-aM-mmC" firstAttribute="leading" secondItem="Zi1-7Z-PVV" secondAttribute="leading" constant="1" id="qX5-eA-yiK"/>
-                    <constraint firstItem="F9a-x6-gVa" firstAttribute="top" secondItem="ecW-YZ-1WY" secondAttribute="top" constant="60" id="zs3-yn-pJH"/>
+                    <constraint firstItem="Zi1-7Z-PVV" firstAttribute="top" secondItem="DtI-Rk-Rme" secondAttribute="top" id="uJO-tm-cHE"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="cXK-zu-2jr"/>

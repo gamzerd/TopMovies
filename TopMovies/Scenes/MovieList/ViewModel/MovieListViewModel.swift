@@ -72,6 +72,11 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
         }
     }
     
+    /**
+     * Called when favourite status changed.
+     * @param id: selected movie id.
+     * @param isFavourite: bool value of favourite.
+     */
     func didChangeMovieFavouriteStatus(id: Int, isFavourite: Bool) {
         
         let index = list.firstIndex { (movie) -> Bool in
@@ -83,12 +88,19 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
         }
     }
     
+    /**
+     * Called when user scrolls to bottom
+     */
     func didScrollToBottom() {
         
         currentPageNumber += 1
         dataSource.getMovies(page: currentPageNumber, callback: didReceiveMovies(list:error:))
     }
 
+    /**
+     * Called when favourite button clicked.
+     * @param index: index of selected row
+     */
     func didFavouriteButtonClick(index: Int) {
      
         if list[index].isFavourite {
@@ -101,7 +113,7 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
     
     /**
      * Called when cell pressed long.
-     * @param index: index of the selected section's row.
+     * @param index: index of the selected row.
      * @return MovieDetailViewController: controller to show
      */
     func didPressLong(index: Int) -> UIViewController {
