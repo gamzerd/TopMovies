@@ -88,22 +88,7 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
     func didScrollToBottom() {
         
         currentPageNumber += 1
-        
-        let favIdArray = dataSource.getFavouritesList()
-        
-        dataSource
-            .getMovies(page: currentPageNumber)
-            .flatMap{ movies in
-                Observable.from(movies)
-            }.map { movie in
-                self.list.append(FavMovie.initFromMovie(movie: movie, isFavourite: favIdArray.contains(movie.id)))
-            }
-            .observeOn(MainScheduler.instance)
-            .subscribe(onError: {_ in
-                self.viewDelegate?.showError(message: "Fetching list failed!")
-            }, onCompleted: {
-                self.viewDelegate?.showList(index: -1)
-            }).disposed(by: self.disposeBag)
+        load()
     }
     
     /**
