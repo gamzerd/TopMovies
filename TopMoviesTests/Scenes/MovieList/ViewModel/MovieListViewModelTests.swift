@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import RxSwift
 
 @testable import TopMovies
 
@@ -63,16 +64,18 @@ class MovieListViewModelTests: XCTestCase {
         XCTAssertEqual(ds.getMoviesCount, 1)
     }
     
-    func testDidReceiveMovies() {
+    func testGetMovies() {
         
         // given
-        let vm = MovieListViewModel(dataSource: MockDataSource())
+        let ds = MockDataSource()
+        ds.expectedList = [Movie(title: "Glass"), Movie(title:  "Iron Man"), Movie(title: "Amelie")]
+        let vm = MovieListViewModel(dataSource: ds)
         
         let view = MockView()
         vm.viewDelegate = view
         
         // when
-        vm.didReceiveMovies(list: MoviesResponse(results: [Movie(title: "Glass"), Movie(title:  "Iron Man"), Movie(title: "Amelie")]), error: nil)
+        vm.load()
         
         // then
         XCTAssertNotNil(vm.list)
@@ -81,16 +84,17 @@ class MovieListViewModelTests: XCTestCase {
         XCTAssertEqual(view.showListCallCount, 1)
     }
     
-    func testDidReceiveMoviesWithError() {
+    func testGetMoviesWithError() {
         
         // given
-        let vm = MovieListViewModel(dataSource: MockDataSource())
+        let ds = MockDataSource()
+        let vm = MovieListViewModel(dataSource: ds)
         
         let view = MockView()
         vm.viewDelegate = view
         
         // when
-        vm.didReceiveMovies(list: nil, error: APIError.NetworkFail())
+        vm.load()
         
         // then
         XCTAssertNotNil(vm.list)
@@ -106,6 +110,9 @@ enum APIError: Error {
 }
 
 class MockDataSource: DataSourceProtocol {
+   
+    // returned as mock response in getMovies function
+    var expectedList: [Movie]?
     
     var getMoviesCount = 0
     var getMoviesParameter: Int?
@@ -124,9 +131,15 @@ class MockDataSource: DataSourceProtocol {
     var removeDelegateCount = 0
     var removeDelegateParameter: Int?
     
-    func getMovies(page: Int, callback: @escaping (MoviesResponse?, Error?) -> Void) {
+    func getMovies(page: Int) -> Observable<[Movie]> {
         getMoviesCount += 1
         getMoviesParameter = page
+        
+        if let list = expectedList {
+            return Observable.just(list)
+        } else {
+            return Observable.error(APIError.NetworkFail())
+        }
     }
     
     func saveFavourite(id: Int) {

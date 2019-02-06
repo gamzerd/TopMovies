@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 class MoviesDataSource: DataSourceProtocol {
    
@@ -24,11 +25,6 @@ class MoviesDataSource: DataSourceProtocol {
         )
     }
     
-    /**
-     * Gets movie from api.
-     * @param movie: movie object.
-     * @param callback: completion callback.
-     */
     func getMovies(page: Int, callback: @escaping (MoviesResponse?, Error?) -> Void){
         
         let requestParams = MoviesRequest(page: String(page))
@@ -40,6 +36,32 @@ class MoviesDataSource: DataSourceProtocol {
                 }
         })
         
+    }
+    
+    /**
+     * Gets movie from api.
+     * @param page: page number to show list.
+     * @return [Movie]
+     */
+    func getMovies(page: Int) -> Observable<[Movie]> {
+      
+        let requestParams = MoviesRequest(page: String(page))
+        
+        return Observable<[Movie]>.create { observer in
+            self.api.get(path: "/movie/popular", params: requestParams, responseType: MoviesResponse.self, callback:
+                { (data: MoviesResponse?, error: Error?) -> Void in
+                    if error == nil {
+                        observer.onNext((data?.results)!)
+                    } else {
+                        observer.onError(error!)
+                    }
+                    observer.onCompleted()
+            })
+
+            return Disposables.create {
+
+            }
+        }
     }
     
     /**

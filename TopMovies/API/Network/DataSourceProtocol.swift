@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol DataSourceProtocol {
     
     /**
      * Retrieves the movie data from.
-     */
-    func getMovies(page: Int, callback: @escaping (MoviesResponse?, Error?) -> Void)
+     */    
+    func getMovies(page: Int) -> Observable<[Movie]>
     
     func saveFavourite(id: Int)
     

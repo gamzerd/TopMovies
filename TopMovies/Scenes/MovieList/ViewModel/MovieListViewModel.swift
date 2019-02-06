@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RxSwift
 
 final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegateProtocol {
     
@@ -15,6 +16,8 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
     
     var currentPageNumber = 1
     
+    var disposeBag = DisposeBag()
+
     var delegateIndex = 0
     
     weak var viewDelegate: MovieListViewProtocol?
@@ -45,31 +48,22 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
      * Called when page is loaded.
      */
     func load() {
-        dataSource.getMovies(page: currentPageNumber, callback: didReceiveMovies(list:error:))
-    }
-    
-    /**
-     * Called when a movie list is received.
-     * @param list: list of movie.
-     * @param error: error if service fails.
-     */
-    func didReceiveMovies(list: MoviesResponse?, error: Error?) {
         
-        if let list = list {
-            
-            let favIdArray = dataSource.getFavouritesList()
-            
-            let favList = list.results.map({
-                return FavMovie.initFromMovie(movie: $0, isFavourite: favIdArray.contains($0.id))
-            })
-            
-            self.list.append(contentsOf: favList)
-            viewDelegate?.showList(index: -1)
-        }
+        let favIdArray = dataSource.getFavouritesList()
         
-        if error != nil {
-            viewDelegate?.showError(message: "Fetching list failed!")
-        }
+        dataSource
+            .getMovies(page: currentPageNumber)
+            .flatMap{ movies in
+                Observable.from(movies)
+            }.map { movie in
+                self.list.append(FavMovie.initFromMovie(movie: movie, isFavourite: favIdArray.contains(movie.id)))
+            }
+            .observeOn(MainScheduler.instance)
+            .subscribe(onError: {_ in
+                self.viewDelegate?.showError(message: "Fetching list failed!")
+            }, onCompleted: {
+                self.viewDelegate?.showList(index: -1)
+            }).disposed(by: self.disposeBag)
     }
     
     /**
@@ -94,15 +88,30 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
     func didScrollToBottom() {
         
         currentPageNumber += 1
-        dataSource.getMovies(page: currentPageNumber, callback: didReceiveMovies(list:error:))
+        
+        let favIdArray = dataSource.getFavouritesList()
+        
+        dataSource
+            .getMovies(page: currentPageNumber)
+            .flatMap{ movies in
+                Observable.from(movies)
+            }.map { movie in
+                self.list.append(FavMovie.initFromMovie(movie: movie, isFavourite: favIdArray.contains(movie.id)))
+            }
+            .observeOn(MainScheduler.instance)
+            .subscribe(onError: {_ in
+                self.viewDelegate?.showError(message: "Fetching list failed!")
+            }, onCompleted: {
+                self.viewDelegate?.showList(index: -1)
+            }).disposed(by: self.disposeBag)
     }
-
+    
     /**
      * Called when favourite button clicked.
      * @param index: index of selected row
      */
     func didFavouriteButtonClick(index: Int) {
-     
+        
         if list[index].isFavourite {
             dataSource.deleteFavourite(id: list[index].id)
         } else {
