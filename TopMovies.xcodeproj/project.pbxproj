@@ -22,7 +22,7 @@
 		FA0981BE21FB4BC5002B3099 /* MoviesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981BD21FB4BC5002B3099 /* MoviesResponse.swift */; };
 		FA0981C221FB593A002B3099 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981C121FB593A002B3099 /* AppRouter.swift */; };
 		FA0981C421FB594F002B3099 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981C321FB594F002B3099 /* AppContainer.swift */; };
-		FA0981CE21FB5E29002B3099 /* MovieListContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981CD21FB5E29002B3099 /* MovieListContracts.swift */; };
+		FA0981CE21FB5E29002B3099 /* MovieListContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981CD21FB5E29002B3099 /* MovieListContract.swift */; };
 		FA0981D021FB5E3D002B3099 /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981CF21FB5E3D002B3099 /* MovieListViewModel.swift */; };
 		FA0981D221FB66E3002B3099 /* UITableViewCellExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981D121FB66E3002B3099 /* UITableViewCellExtensions.swift */; };
 		FA0981D421FB66FA002B3099 /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981D321FB66FA002B3099 /* UITableViewExtensions.swift */; };
@@ -34,7 +34,7 @@
 		FA0981E021FBBCB3002B3099 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981DF21FBBCB3002B3099 /* MovieDetailViewController.swift */; };
 		FA0981E221FBBCDC002B3099 /* MovieDetailViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981E121FBBCDC002B3099 /* MovieDetailViewBuilder.swift */; };
 		FA0981E421FBBCF3002B3099 /* MovieDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0981E321FBBCF3002B3099 /* MovieDetailViewController.xib */; };
-		FA0981E621FBBD5D002B3099 /* MovieDetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981E521FBBD5D002B3099 /* MovieDetailViewModelProtocol.swift */; };
+		FA0981E621FBBD5D002B3099 /* MovieDetailContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981E521FBBD5D002B3099 /* MovieDetailContract.swift */; };
 		FA0981E821FBBD6D002B3099 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981E721FBBD6D002B3099 /* MovieDetailViewModel.swift */; };
 		FA0981EA21FBBFD0002B3099 /* MovieDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0981E921FBBFD0002B3099 /* MovieDetailTableViewCell.swift */; };
 		FA0981EC21FBBFE4002B3099 /* MovieDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0981EB21FBBFE4002B3099 /* MovieDetailTableViewCell.xib */; };
@@ -86,7 +86,7 @@
 		FA0981BD21FB4BC5002B3099 /* MoviesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesResponse.swift; sourceTree = "<group>"; };
 		FA0981C121FB593A002B3099 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		FA0981C321FB594F002B3099 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
-		FA0981CD21FB5E29002B3099 /* MovieListContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListContracts.swift; sourceTree = "<group>"; };
+		FA0981CD21FB5E29002B3099 /* MovieListContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListContract.swift; sourceTree = "<group>"; };
 		FA0981CF21FB5E3D002B3099 /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
 		FA0981D121FB66E3002B3099 /* UITableViewCellExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensions.swift; sourceTree = "<group>"; };
 		FA0981D321FB66FA002B3099 /* UITableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		FA0981DF21FBBCB3002B3099 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		FA0981E121FBBCDC002B3099 /* MovieDetailViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewBuilder.swift; sourceTree = "<group>"; };
 		FA0981E321FBBCF3002B3099 /* MovieDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailViewController.xib; sourceTree = "<group>"; };
-		FA0981E521FBBD5D002B3099 /* MovieDetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModelProtocol.swift; sourceTree = "<group>"; };
+		FA0981E521FBBD5D002B3099 /* MovieDetailContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailContract.swift; sourceTree = "<group>"; };
 		FA0981E721FBBD6D002B3099 /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 		FA0981E921FBBFD0002B3099 /* MovieDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailTableViewCell.swift; sourceTree = "<group>"; };
 		FA0981EB21FBBFE4002B3099 /* MovieDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailTableViewCell.xib; sourceTree = "<group>"; };
@@ -298,6 +298,7 @@
 		FA0981C521FB59FE002B3099 /* MovieList */ = {
 			isa = PBXGroup;
 			children = (
+				FA0981CD21FB5E29002B3099 /* MovieListContract.swift */,
 				FA0981C721FB5A25002B3099 /* View */,
 				FA0981C921FB5A37002B3099 /* ViewModel */,
 			);
@@ -307,6 +308,7 @@
 		FA0981C621FB5A07002B3099 /* MovieDetail */ = {
 			isa = PBXGroup;
 			children = (
+				FA0981E521FBBD5D002B3099 /* MovieDetailContract.swift */,
 				FA0981CA21FB5A4F002B3099 /* View */,
 				FA0981CB21FB5A5F002B3099 /* ViewModel */,
 			);
@@ -336,7 +338,6 @@
 		FA0981C921FB5A37002B3099 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				FA0981CD21FB5E29002B3099 /* MovieListContracts.swift */,
 				FA0981CF21FB5E3D002B3099 /* MovieListViewModel.swift */,
 			);
 			path = ViewModel;
@@ -357,7 +358,6 @@
 			isa = PBXGroup;
 			children = (
 				FA0981E721FBBD6D002B3099 /* MovieDetailViewModel.swift */,
-				FA0981E521FBBD5D002B3099 /* MovieDetailViewModelProtocol.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -691,7 +691,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA0981D421FB66FA002B3099 /* UITableViewExtensions.swift in Sources */,
-				FA0981CE21FB5E29002B3099 /* MovieListContracts.swift in Sources */,
+				FA0981CE21FB5E29002B3099 /* MovieListContract.swift in Sources */,
 				FA0981EE21FBD40E002B3099 /* MoviesRequest.swift in Sources */,
 				FA09818A21FB16EC002B3099 /* MovieListViewController.swift in Sources */,
 				FA0981B421FB1981002B3099 /* MoviesDataSource.swift in Sources */,
@@ -704,7 +704,7 @@
 				FA0981DC21FB6B04002B3099 /* MovieListTableViewCell.swift in Sources */,
 				FA0981F021FC03AF002B3099 /* DateExtensions.swift in Sources */,
 				FA09818821FB16EC002B3099 /* AppDelegate.swift in Sources */,
-				FA0981E621FBBD5D002B3099 /* MovieDetailViewModelProtocol.swift in Sources */,
+				FA0981E621FBBD5D002B3099 /* MovieDetailContract.swift in Sources */,
 				FA0981D021FB5E3D002B3099 /* MovieListViewModel.swift in Sources */,
 				FA0981B221FB196E002B3099 /* DataSourceProtocol.swift in Sources */,
 				FA0981E221FBBCDC002B3099 /* MovieDetailViewBuilder.swift in Sources */,

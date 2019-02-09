@@ -25,19 +25,6 @@ class MoviesDataSource: DataSourceProtocol {
         )
     }
     
-    func getMovies(page: Int, callback: @escaping (MoviesResponse?, Error?) -> Void){
-        
-        let requestParams = MoviesRequest(page: String(page))
-        
-        self.api.get(path: "/movie/popular", params: requestParams, responseType: MoviesResponse.self, callback:
-            { (data: MoviesResponse?, error: Error?) -> Void in
-                DispatchQueue.main.async {
-                    callback(data, nil)
-                }
-        })
-        
-    }
-    
     /**
      * Gets movie from api.
      * @param page: page number to show list.
@@ -70,11 +57,14 @@ class MoviesDataSource: DataSourceProtocol {
      */
     func saveFavourite(id: Int) {
         
+        // append new favourite to the list
         var array = getFavouritesList()
         array.append(id)
         
+        // update the favourite list in UserDefaults
         defaults.set(array, forKey: favMovieListIdsKey)
         
+        // notify all subscribers about the favourite status change
         delegates.forEach { (delegate) in
             delegate.didChangeMovieFavouriteStatus(id: id, isFavourite: true)
         }
@@ -86,14 +76,17 @@ class MoviesDataSource: DataSourceProtocol {
      */
     func deleteFavourite(id: Int) {
        
+        // remove favourite from the list
         var array = getFavouritesList()
         let index = array.firstIndex(of: id)
         if index != nil && index! > -1 {
             array.remove(at: index!)
         }
 
+        // update the favourite list in UserDefaults
         defaults.set(array, forKey: favMovieListIdsKey)
         
+        // notify all subscribers about the favourite status change
         delegates.forEach { (delegate) in
             delegate.didChangeMovieFavouriteStatus(id: id, isFavourite: false)
         }
@@ -105,6 +98,8 @@ class MoviesDataSource: DataSourceProtocol {
     
     func addDelegate(delegate: DataSourceDelegateProtocol) -> Int {
         delegates.append(delegate)
+        
+        // return the index of the new item. It is used for removing delegate.
         return delegates.count - 1
     }
     

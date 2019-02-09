@@ -16,6 +16,7 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
     
     var currentPageNumber = 1
     
+    // used to unsubscribe from RxSwift updates when deinit is called
     var disposeBag = DisposeBag()
 
     var delegateIndex = 0
@@ -26,6 +27,8 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
     
     init (dataSource: DataSourceProtocol) {
         self.dataSource = dataSource
+        
+        // subscribe for changes in favourite list
         delegateIndex = dataSource.addDelegate(delegate: self)
     }
     
@@ -73,9 +76,12 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
      */
     func didChangeMovieFavouriteStatus(id: Int, isFavourite: Bool) {
         
+        // find movie index from given id
         let index = list.firstIndex { (movie) -> Bool in
             return movie.id == id
         }
+        
+        // update movie in the list and show list
         if  index != nil && index! > -1 {
             list[index!].isFavourite = isFavourite
             viewDelegate?.showList(index: index!)
@@ -117,6 +123,8 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
     }
     
     deinit {
+        
+        // unsubscribe for changes in favourite list
         dataSource.removeDelegate(index: delegateIndex)
     }
 }

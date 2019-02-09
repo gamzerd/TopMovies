@@ -20,6 +20,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol, DataSourceDelega
         self.dataSource = dataSource
         self.movie = movie
         
+        // subscribe for changes in favourite list
         delegateIndex = dataSource.addDelegate(delegate: self)
     }
     
@@ -53,6 +54,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol, DataSourceDelega
     }
     
     deinit {
+        
+        // unsubscribe for changes in favourite list
         dataSource.removeDelegate(index: delegateIndex)
     }
 

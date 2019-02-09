@@ -1,5 +1,5 @@
 //
-//  MovieListContracts.swift
+//  MovieListContract.swift
 //  TopMovies
 //
 //  Created by Gamze on 1/25/19.

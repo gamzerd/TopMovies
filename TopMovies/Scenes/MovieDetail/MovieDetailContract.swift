@@ -1,5 +1,5 @@
 //
-//  MovieDetailViewModelProtocol.swift
+//  MovieDetailContract.swift
 //  TopMovies
 //
 //  Created by Gamze on 1/25/19.
