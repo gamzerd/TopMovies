@@ -58,7 +58,7 @@ class MoviesDataSource: DataSourceProtocol {
     func saveFavourite(id: Int) {
         
         // append new favourite to the list
-        var array = getFavouritesList()
+        var array = defaults.array(forKey: favMovieListIdsKey) as? [Int] ?? [Int]()
         array.append(id)
         
         // update the favourite list in UserDefaults
@@ -77,7 +77,7 @@ class MoviesDataSource: DataSourceProtocol {
     func deleteFavourite(id: Int) {
        
         // remove favourite from the list
-        var array = getFavouritesList()
+        var array = defaults.array(forKey: favMovieListIdsKey) as? [Int] ?? [Int]()
         let index = array.firstIndex(of: id)
         if index != nil && index! > -1 {
             array.remove(at: index!)
@@ -92,8 +92,9 @@ class MoviesDataSource: DataSourceProtocol {
         }
     }
     
-    func getFavouritesList() -> [Int] {
-        return defaults.array(forKey: favMovieListIdsKey) as? [Int] ?? [Int]()
+    func getFavouritesList() -> Observable<[Int]> {
+        
+        return Observable.just(defaults.array(forKey: favMovieListIdsKey) as? [Int] ?? [Int]())
     }
     
     func addDelegate(delegate: DataSourceDelegateProtocol) -> Int {

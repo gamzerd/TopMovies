@@ -152,9 +152,9 @@ class MockDataSource: DataSourceProtocol {
         deleteFavouriteParameter = id
     }
     
-    func getFavouritesList() -> [Int] {
+    func getFavouritesList() -> Observable<[Int]> {
         getFavouritesListCount += 1
-        return []
+        return Observable.just([])
     }
     
     func addDelegate(delegate: DataSourceDelegateProtocol) -> Int {

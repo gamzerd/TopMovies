@@ -25,22 +25,18 @@ class MoviesDataSourceTests: XCTestCase {
         let service = MockService(url: "url/", defaultParams: [:])
         ds.api = service
         
-        let expectation = self.expectation(description: "callback")
-        
         // when
-        var responseReturnedFromCallback: MoviesResponse?
-        ds.getMovies(page: 1, callback: { response,_ in
-            responseReturnedFromCallback = response
-            expectation.fulfill()
-        })
+        var responseReturnedFromCallback: [Movie]?
+        ds.getMovies(page: 1).subscribe(onNext: { list in
+            responseReturnedFromCallback = list
+        }).dispose()
         
         // then
-        waitForExpectations(timeout: 10, handler: nil)
         XCTAssertEqual(service.callCount, 1)
         XCTAssertEqual(service.callParameterPath!, "/movie/popular")
-        XCTAssertEqual(responseReturnedFromCallback!.results.count, 2)
-        XCTAssertEqual(responseReturnedFromCallback!.results[0].title, "Glass")
-        XCTAssertEqual(responseReturnedFromCallback!.results[1].title, "Titanic")
+        XCTAssertEqual(responseReturnedFromCallback!.count, 2)
+        XCTAssertEqual(responseReturnedFromCallback![0].title, "Glass")
+        XCTAssertEqual(responseReturnedFromCallback![1].title, "Titanic")
     }
     
     func testSaveFavourite() {

@@ -52,16 +52,19 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
      */
     func load() {
         
-        let favIdArray = dataSource.getFavouritesList()
-        
-        dataSource
-            .getMovies(page: currentPageNumber)
-            .flatMap{ movies in
-                Observable.from(movies)
-            }.map { movie in
-                self.list.append(FavMovie.initFromMovie(movie: movie, isFavourite: favIdArray.contains(movie.id)))
-            }
-            .observeOn(MainScheduler.instance)
+        Observable.zip(
+            // get favourite list
+            dataSource.getFavouritesList(),
+            
+            // get movie list
+            dataSource.getMovies(page: currentPageNumber),
+            
+            // consume the result of two async actions
+            resultSelector: { favIdList, movieList in
+                movieList.map { movie in
+                    self.list.append(FavMovie.initFromMovie(movie: movie, isFavourite: favIdList.contains(movie.id)))
+                }
+        }).observeOn(MainScheduler.instance)
             .subscribe(onError: {_ in
                 self.viewDelegate?.showError(message: "Fetching list failed!")
             }, onCompleted: {

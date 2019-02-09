@@ -9,11 +9,11 @@
 import Foundation
 
 final class MovieDetailViewModel: MovieDetailViewModelProtocol, DataSourceDelegateProtocol {
-   
+    
     var dataSource: DataSourceProtocol
     var movie: FavMovie
     weak var viewDelegate: MovieDetailViewProtocol?
-
+    
     var delegateIndex = 0
     
     init(dataSource: DataSourceProtocol, movie: FavMovie) {
@@ -23,7 +23,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol, DataSourceDelega
         // subscribe for changes in favourite list
         delegateIndex = dataSource.addDelegate(delegate: self)
     }
-    
+   
     /**
      * Called to get title.
      */
@@ -33,16 +33,18 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol, DataSourceDelega
     }
     
     func didFavouriteButtonClick() {
-        if dataSource.getFavouritesList().contains(movie.id) {
+        if movie.isFavourite {
             dataSource.deleteFavourite(id: movie.id)
+            movie.isFavourite = false
         } else {
             dataSource.saveFavourite(id: movie.id)
+            movie.isFavourite = true
         }
         viewDelegate?.invalidateData()
     }
     
     func getFavouriteIconName() -> String {
-         if dataSource.getFavouritesList().contains(movie.id) {
+        if movie.isFavourite {
             return "star"
         } else {
             return "starEmpty"
@@ -58,5 +60,5 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol, DataSourceDelega
         // unsubscribe for changes in favourite list
         dataSource.removeDelegate(index: delegateIndex)
     }
-
+    
 }

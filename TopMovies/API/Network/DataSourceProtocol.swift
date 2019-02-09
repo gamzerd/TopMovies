@@ -20,7 +20,7 @@ protocol DataSourceProtocol {
     
     func deleteFavourite(id: Int)
     
-    func getFavouritesList() -> [Int]
+    func getFavouritesList() -> Observable<[Int]>
     
     func addDelegate(delegate: DataSourceDelegateProtocol) -> Int
     
