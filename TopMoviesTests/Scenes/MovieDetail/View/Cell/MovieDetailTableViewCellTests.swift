@@ -18,7 +18,7 @@ class MovieDetailTableViewCellTests: XCTestCase {
         let cell = nib.instantiate(withOwner: nil, options: [:]).first as! MovieDetailTableViewCell
         
         // when
-        cell.setup(with: FavMovie(title: "Iron Man", id: 3, voteAverage: 5.4, posterPath: "posterPath", overview: "overview", releaseDate: Date(), isFavourite: false))
+        cell.setup(with: "url")
         
         // then
         XCTAssertNotNil(cell.poster)

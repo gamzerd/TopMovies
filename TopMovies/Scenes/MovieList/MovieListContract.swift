@@ -34,5 +34,5 @@ protocol MovieListViewProtocol: class {
 
     func showError(message: String)
     
-    func openPage(movie: FavMovie)
+    func openPage(id: Int)
 }

@@ -39,6 +39,26 @@ class MoviesDataSourceTests: XCTestCase {
         XCTAssertEqual(responseReturnedFromCallback![1].title, "Titanic")
     }
     
+    func testGetMovie() {
+        
+        // given
+        let ds = MoviesDataSource()
+        let service = MockService(url: "url/", defaultParams: [:])
+        ds.api = service
+        
+        // when
+        var responseReturnedFromCallback: Movie?
+        ds.getMovie(id: 1).subscribe(onNext: { movie in
+            responseReturnedFromCallback = movie
+        }).dispose()
+        
+        // then
+        XCTAssertEqual(service.callCount, 1)
+        XCTAssertEqual(service.callParameterPath!, "/movie/1")
+        XCTAssertEqual(responseReturnedFromCallback!.id, 1)
+        XCTAssertEqual(responseReturnedFromCallback!.title, "Glass")
+    }
+    
     func testSaveFavourite() {
        
         // given
@@ -110,9 +130,15 @@ class MockService: Service {
     override  func get<E, D>(path: String, params: E, responseType: D.Type, callback: @escaping (D?, Error?) -> Void) where E : Encodable, D : Decodable {
         callCount += 1
         callParameterPath = path
-        let list: [Movie] = [Movie(title: "Glass"), Movie(title: "Titanic")]
-        let response = MoviesResponse(results: list)
-        callback((response as! D), nil)
+        
+        if path == "/movie/popular" {
+            let list: [Movie] = [Movie(title: "Glass"), Movie(title: "Titanic")]
+            let response = MoviesResponse(results: list)
+            callback((response as! D), nil)
+        } else {
+            let movie = Movie(title: "Glass", id: 1)
+            callback((movie as! D), nil)
+        }
     }
 }
 

@@ -10,12 +10,12 @@ import Foundation
 import RxSwift
 
 class MoviesDataSource: DataSourceProtocol {
-   
+    
     var api: ServiceProtocol
     var defaults = UserDefaults.standard
     
     var delegates: [DataSourceDelegateProtocol] = []
-
+    
     final let favMovieListIdsKey = "FavouriteMovieListIds"
     
     init() {
@@ -31,7 +31,7 @@ class MoviesDataSource: DataSourceProtocol {
      * @return [Movie]
      */
     func getMovies(page: Int) -> Observable<[Movie]> {
-      
+        
         let requestParams = MoviesRequest(page: String(page))
         
         return Observable<[Movie]>.create { observer in
@@ -44,11 +44,35 @@ class MoviesDataSource: DataSourceProtocol {
                     }
                     observer.onCompleted()
             })
-
+            
             return Disposables.create {
-
+                
             }
         }
+    }
+    
+    /**
+     * Gets movie with given id.
+     * @param id: id of movie.
+     * @return Movie
+     */
+    func getMovie(id: Int) -> Observable<Movie> {
+        
+        return Observable<Movie>.create{ observer in
+            let params: Dictionary<String, String> = [:]
+            self.api.get(path: "/movie/" + String(id), params: params, responseType: Movie.self) { (movie, error) in
+                if error == nil {
+                    observer.onNext((movie)!)
+                } else {
+                    observer.onError(error!)
+                }
+                observer.onCompleted()
+            }
+            
+            return Disposables.create {
+            }
+        }
+        
     }
     
     /**
@@ -75,14 +99,14 @@ class MoviesDataSource: DataSourceProtocol {
      * @param id: movie id
      */
     func deleteFavourite(id: Int) {
-       
+        
         // remove favourite from the list
         var array = defaults.array(forKey: favMovieListIdsKey) as? [Int] ?? [Int]()
         let index = array.firstIndex(of: id)
         if index != nil && index! > -1 {
             array.remove(at: index!)
         }
-
+        
         // update the favourite list in UserDefaults
         defaults.set(array, forKey: favMovieListIdsKey)
         

@@ -7,44 +7,91 @@
 //
 
 import Foundation
+import RxSwift
 
 final class MovieDetailViewModel: MovieDetailViewModelProtocol, DataSourceDelegateProtocol {
     
     var dataSource: DataSourceProtocol
-    var movie: FavMovie
+    var id: Int
     weak var viewDelegate: MovieDetailViewProtocol?
     
     var delegateIndex = 0
     
-    init(dataSource: DataSourceProtocol, movie: FavMovie) {
+    var movie: FavMovie?
+    
+    // used to unsubscribe from RxSwift updates when deinit is called
+    var disposeBag = DisposeBag()
+    
+    init(dataSource: DataSourceProtocol, id: Int) {
         self.dataSource = dataSource
-        self.movie = movie
+        self.id = id
         
         // subscribe for changes in favourite list
         delegateIndex = dataSource.addDelegate(delegate: self)
     }
    
+    func didPageLoad() {
+ 
+        Observable.zip(
+            // get favourite list
+            dataSource.getFavouritesList(),
+            
+            // get movie
+            dataSource.getMovie(id: id),
+            
+            // consume the result of two async actions
+            resultSelector: { favIdList, movie in
+                self.movie = FavMovie.initFromMovie(movie: movie, isFavourite: favIdList.contains(self.id))
+        }).observeOn(MainScheduler.instance)
+            .subscribe(onError: {_ in
+                self.viewDelegate?.showError(message: "Fetching movie failed!")
+            }, onCompleted: {
+                self.viewDelegate?.invalidateData()
+            }).disposed(by: self.disposeBag)
+        
+    }
+    
     /**
      * Called to get title.
      */
     func getTitle() -> String {
         
-        return self.movie.title
+        if let movie = self.movie {
+            return movie.title
+        } else {
+            return ""
+        }
+    }
+    
+    /**
+     * Called to get poster path.
+     */
+    func getPosterPath() -> String {
+        
+        if let movie = self.movie {
+            return movie.posterPath
+        } else {
+            return ""
+        }
     }
     
     func didFavouriteButtonClick() {
-        if movie.isFavourite {
-            dataSource.deleteFavourite(id: movie.id)
-            movie.isFavourite = false
+        
+        guard let movieItem = self.movie else { return }
+        
+        if movieItem.isFavourite {
+            dataSource.deleteFavourite(id: movieItem.id)
+            movieItem.isFavourite = false
         } else {
-            dataSource.saveFavourite(id: movie.id)
-            movie.isFavourite = true
+            dataSource.saveFavourite(id: movieItem.id)
+            movieItem.isFavourite = true
         }
         viewDelegate?.invalidateData()
     }
     
     func getFavouriteIconName() -> String {
-        if movie.isFavourite {
+        
+        if let movie = self.movie, movie.isFavourite {
             return "star"
         } else {
             return "starEmpty"

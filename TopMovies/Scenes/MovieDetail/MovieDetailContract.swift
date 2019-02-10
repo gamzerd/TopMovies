@@ -12,17 +12,23 @@ protocol MovieDetailViewModelProtocol: class{
     
     var viewDelegate: MovieDetailViewProtocol? { get set }
 
-    var movie: FavMovie { get set }
+    var id: Int { get set }
+    
+    func didPageLoad()
     
     func getTitle() -> String
     
     func getFavouriteIconName() -> String
+    
+    func getPosterPath() -> String
     
     func didFavouriteButtonClick()
     
 }
 
 protocol MovieDetailViewProtocol: class {
+    
+    func showError(message: String)
     
     func invalidateData()
 }

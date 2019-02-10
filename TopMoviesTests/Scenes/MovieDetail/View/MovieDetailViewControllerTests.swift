@@ -32,7 +32,8 @@ class MovieDetailViewControllerTests: XCTestCase {
         
         // when
         _ = viewController.view
-        
+        viewController.invalidateData()
+
         // then
         XCTAssertEqual(viewController.title, "Movie Detail Test Header")
     }
@@ -40,7 +41,8 @@ class MovieDetailViewControllerTests: XCTestCase {
 }
 
 class MockDetailViewModel: MovieDetailViewModelProtocol {
-   
+    var id: Int = 0
+    
     var viewDelegate: MovieDetailViewProtocol?
     
     var movie = FavMovie(title: "Amelie")
@@ -56,5 +58,14 @@ class MockDetailViewModel: MovieDetailViewModelProtocol {
     func getTitle() -> String {
         return "Movie Detail Test Header"
     }
+    
+    func didPageLoad() {
+        
+    }
+    
+    func getPosterPath() -> String {
+        return "url"
+    }
+    
 }
 

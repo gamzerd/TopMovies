@@ -37,7 +37,7 @@ class MovieListViewModelTests: XCTestCase {
         
         // given
         let vm = MovieListViewModel(dataSource: MockDataSource())
-        vm.list = [FavMovie(title: "Glass"), FavMovie(title: "Iron Man")]
+        vm.list = [FavMovie(id: 14), FavMovie(id: 15)]
         
         let view = MockView()
         vm.viewDelegate = view
@@ -48,20 +48,7 @@ class MovieListViewModelTests: XCTestCase {
         // then
         XCTAssertEqual(view.openPageCount, 1)
         XCTAssertNotNil(view.openPageParameter)
-        XCTAssertEqual(view.openPageParameter?.title, "Glass")
-    }
-    
-    func testLoad() {
-        
-        // given
-        let ds = MockDataSource()
-        let vm = MovieListViewModel(dataSource: ds)
-        
-        // when
-        vm.load()
-        
-        // then
-        XCTAssertEqual(ds.getMoviesCount, 1)
+        XCTAssertEqual(view.openPageParameter, 14 )
     }
     
     func testGetMovies() {
@@ -78,6 +65,8 @@ class MovieListViewModelTests: XCTestCase {
         vm.load()
         
         // then
+        XCTAssertEqual(ds.getMoviesCount, 1)
+
         XCTAssertNotNil(vm.list)
         XCTAssertEqual(vm.list.count, 3)
         
@@ -97,6 +86,8 @@ class MovieListViewModelTests: XCTestCase {
         vm.load()
         
         // then
+        XCTAssertEqual(ds.getMoviesCount, 1)
+        
         XCTAssertNotNil(vm.list)
         XCTAssertEqual(vm.list.count, 0)
         
@@ -114,8 +105,13 @@ class MockDataSource: DataSourceProtocol {
     // returned as mock response in getMovies function
     var expectedList: [Movie]?
     
+    var expectedMovie: Movie?
+
     var getMoviesCount = 0
     var getMoviesParameter: Int?
+    
+    var getMovieCount = 0
+    var getMovieParameter: Int?
     
     var saveFavouriteCount = 0
     var saveFavouriteParameter: Int?
@@ -137,6 +133,17 @@ class MockDataSource: DataSourceProtocol {
         
         if let list = expectedList {
             return Observable.just(list)
+        } else {
+            return Observable.error(APIError.NetworkFail())
+        }
+    }
+    
+    func getMovie(id: Int) -> Observable<Movie> {
+        getMovieCount += 1
+        getMovieParameter = id
+        
+        if let movie = expectedMovie {
+            return Observable.just(movie)
         } else {
             return Observable.error(APIError.NetworkFail())
         }
@@ -180,7 +187,7 @@ class MockView: MovieListViewProtocol {
     var showErrorParameter: String?
     
     var openPageCount = 0
-    var openPageParameter: Movie?
+    var openPageParameter: Int?
     
     func showList(index: Int) {
         showListCallCount += 1
@@ -192,9 +199,9 @@ class MockView: MovieListViewProtocol {
         showErrorParameter = message
     }
     
-    func openPage(movie: FavMovie) {
+    func openPage(id: Int) {
         openPageCount += 1
-        openPageParameter = movie
+        openPageParameter = id
     }
     
 }

@@ -23,7 +23,7 @@ final class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(MovieDetailTableViewCell.self)
-        showData()
+        viewModel.didPageLoad()
     }
     
     @objc func favouriteButtonClicked() {
@@ -52,6 +52,15 @@ extension MovieDetailViewController: MovieDetailViewProtocol {
         
         showData()
     }
+    
+    /**
+     * Called when view model has an error.
+     * @param message: to show in alert
+     */
+    func showError(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 extension MovieDetailViewController: UITableViewDataSource {
@@ -62,7 +71,7 @@ extension MovieDetailViewController: UITableViewDataSource {
   
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieDetailTableViewCell.identifier) as! MovieDetailTableViewCell
-        cell.setup(with: viewModel.movie)
+        cell.setup(with: viewModel.getPosterPath())
         
         return cell
     }

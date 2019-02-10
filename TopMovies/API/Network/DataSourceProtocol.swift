@@ -16,6 +16,8 @@ protocol DataSourceProtocol {
      */    
     func getMovies(page: Int) -> Observable<[Movie]>
     
+    func getMovie(id: Int) -> Observable<Movie>
+    
     func saveFavourite(id: Int)
     
     func deleteFavourite(id: Int)

@@ -44,7 +44,7 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
      * @param index: index of the selected section.
      */
     func didRowSelect(index: Int) {
-        viewDelegate?.openPage(movie: list[index])
+        viewDelegate?.openPage(id: list[index].id)
     }
     
     /**
@@ -121,7 +121,7 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
      */
     func didPressLong(index: Int) -> UIViewController {
         
-        let detailViewModel = MovieDetailViewModel(dataSource: app.dataSource, movie: list[index])
+        let detailViewModel = MovieDetailViewModel(dataSource: app.dataSource, id: list[index].id)
         return MovieDetailBuilder.make(with: detailViewModel)
     }
     

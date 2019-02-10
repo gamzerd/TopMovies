@@ -55,10 +55,10 @@ extension MovieListViewController: MovieListViewProtocol {
     
     /**
      * Opens detail page.
-     * @param movie: Object to set details, fromViewController: controller to show detail
+     * @param id: id of the movie
      */
-    func openPage(movie: FavMovie) {
-        delegate.showDetails(movie: movie, fromViewController: self)
+    func openPage(id: Int) {
+        delegate.showDetails(id: id, fromViewController: self)
     }
     
 }

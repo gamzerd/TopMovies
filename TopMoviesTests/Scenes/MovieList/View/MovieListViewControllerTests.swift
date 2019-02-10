@@ -96,11 +96,11 @@ class MovieListViewControllerTests: XCTestCase {
         viewController.delegate = mockDelegate
         
         // when
-        viewController.openPage(movie: FavMovie(title: "Amelie"))
+        viewController.openPage(id: 13)
         
         // then
         XCTAssertEqual(mockDelegate.showDetailsCount, 1)
-        XCTAssertEqual(mockDelegate.showDetailsParameterMovie?.title, "Amelie")
+        XCTAssertEqual(mockDelegate.showDetailsParameterMovie, 13)
         XCTAssertEqual(mockDelegate.showDetailsParameterFromViewController, viewController)
         
     }
@@ -159,12 +159,12 @@ class MockViewModel: MovieListViewModelProtocol {
 class MockShowDetailsCoordinatorDelegate: ShowDetailsCoordinatorDelegate {
     
     var showDetailsCount = 0
-    var showDetailsParameterMovie: FavMovie?
+    var showDetailsParameterMovie: Int?
     var showDetailsParameterFromViewController: UIViewController?
     
-    func showDetails(movie: FavMovie, fromViewController: UIViewController) {
+    func showDetails(id: Int, fromViewController: UIViewController) {
         showDetailsCount += 1
-        showDetailsParameterMovie = movie
+        showDetailsParameterMovie = id
         showDetailsParameterFromViewController = fromViewController
     }
 }
