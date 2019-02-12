@@ -121,7 +121,7 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
      */
     func didPressLong(index: Int) -> UIViewController {
         
-        let detailViewModel = MovieDetailViewModel(dataSource: app.dataSource, id: list[index].id)
+        let detailViewModel = MovieDetailViewModel(dataSource: app!.dataSource, id: list[index].id)
         return MovieDetailBuilder.make(with: detailViewModel)
     }
     

@@ -12,7 +12,7 @@ final class MovieListBuilder {
     
     static func make() -> MovieListViewController {
         
-        let viewModel = MovieListViewModel(dataSource: app.dataSource)
+        let viewModel = MovieListViewModel(dataSource: app!.dataSource)
         let viewController = MovieListViewController(viewModel: viewModel)
         return viewController
         

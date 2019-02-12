@@ -12,8 +12,8 @@ final class AppRouter {
     
     let window: UIWindow
     
-    init() {
-        window = UIWindow(frame: UIScreen.main.bounds)
+    init(window: UIWindow) {
+        self.window = window
     }
     
     /**
@@ -40,7 +40,7 @@ extension AppRouter: ShowDetailsCoordinatorDelegate {
      */
     func showDetails(id: Int, fromViewController: UIViewController) {
         
-        let viewModel = MovieDetailViewModel(dataSource: app.dataSource, id: id)
+        let viewModel = MovieDetailViewModel(dataSource: app!.dataSource, id: id)
         let movieDetailVC = MovieDetailBuilder.make(with: viewModel)
         fromViewController.show(movieDetailVC, sender: nil)
     }

@@ -7,11 +7,14 @@
 //
 
 import Foundation
-
-let app = AppContainer()
+import UIKit
 
 final class AppContainer {
     
-    let router = AppRouter()
+    let router: AppRouter
     let dataSource = MoviesDataSource()
+    
+    init(window: UIWindow) {
+        router = AppRouter(window: window)
+    }
 }
