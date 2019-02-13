@@ -86,7 +86,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol, DataSourceDelega
             dataSource.saveFavourite(id: movieItem.id)
             movieItem.isFavourite = true
         }
-        viewDelegate?.invalidateData()
     }
     
     func getFavouriteIconName() -> String {

@@ -111,7 +111,6 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
         } else {
             dataSource.saveFavourite(id: list[index].id)
         }
-        viewDelegate?.showList(index: index)
     }
     
     /**
