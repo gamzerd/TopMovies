@@ -14,14 +14,19 @@ class AppRouterTests: XCTestCase {
     
     func testInit() {
         
-        let router = AppRouter()
+        let window = UIWindow()
+        
+        let router = AppRouter(window: window)
         
         XCTAssertNotNil(router.window)
     }
     
     func testStart() {
         
-        let router = AppRouter()
+        let window = UIWindow()
+
+        let router = AppRouter(window: window)
+        
         router.start()
         
         XCTAssertNotNil(router.window.rootViewController)

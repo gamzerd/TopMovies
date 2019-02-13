@@ -75,19 +75,9 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol, DataSourceDelega
         }
     }
     
-    func didFavouriteButtonClick() {
-        
-        guard let movieItem = self.movie else { return }
-        
-        if movieItem.isFavourite {
-            dataSource.deleteFavourite(id: movieItem.id)
-            movieItem.isFavourite = false
-        } else {
-            dataSource.saveFavourite(id: movieItem.id)
-            movieItem.isFavourite = true
-        }
-    }
-    
+    /**
+     * Called to get favourite icon name.
+     */
     func getFavouriteIconName() -> String {
         
         if let movie = self.movie, movie.isFavourite {
@@ -97,8 +87,25 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol, DataSourceDelega
         }
     }
     
+    func didFavouriteButtonClick() {
+        
+        guard let movieItem = self.movie else { return }
+        
+        if movieItem.isFavourite {
+            dataSource.deleteFavourite(id: movieItem.id)
+        } else {
+            dataSource.saveFavourite(id: movieItem.id)
+        }
+    }
+    
     func didChangeMovieFavouriteStatus(id: Int, isFavourite: Bool) {
-        viewDelegate?.invalidateData()
+        
+        guard let movieItem = self.movie else { return }
+        
+        if id == movieItem.id {
+            movieItem.isFavourite = isFavourite
+            viewDelegate?.invalidateData()
+        }
     }
     
     deinit {

@@ -16,12 +16,15 @@ class MovieListViewModelTests: XCTestCase {
     func testInit() {
         
         // when
-        let vm = MovieListViewModel(dataSource: MockDataSource())
+        let ds = MockDataSource()
+        let vm = MovieListViewModel(dataSource: ds)
         
         // then
         XCTAssertNotNil(vm.dataSource)
         XCTAssertNotNil(vm.list)
         XCTAssertEqual(vm.list.count, 0)
+        
+        XCTAssertEqual(ds.addDelegateCount, 1)
     }
     
     func testGetTitle() {
@@ -93,6 +96,74 @@ class MovieListViewModelTests: XCTestCase {
         
         XCTAssertEqual(view.showErrorCount, 1)
         XCTAssertEqual(view.showErrorParameter, "Fetching list failed!")
+    }
+    
+    func testLoad() {
+        
+        // given
+        let ds = MockDataSource()
+        let vm = MovieListViewModel(dataSource: ds)
+        
+        // when
+        vm.didScrollToBottom()
+        
+        // then
+        XCTAssertEqual(vm.currentPageNumber, 2)
+
+        XCTAssertEqual(ds.getMoviesCount, 1)
+
+    }
+    
+    func testDidFavouriteButtonClickIfFavourite() {
+        
+        // given
+        let ds = MockDataSource()
+        let vm = MovieListViewModel(dataSource: ds)
+        vm.list = [FavMovie(id: 14), FavMovie(id: 15)]
+        vm.list[1].isFavourite = true
+        
+        // when
+        vm.didFavouriteButtonClick(index: 1)
+        
+        // then
+        XCTAssertEqual(ds.deleteFavouriteCount, 1)
+        XCTAssertEqual(ds.deleteFavouriteParameter, 15)
+    }
+    
+    func testDidFavouriteButtonClickIfNotFavourite() {
+        
+        // given
+        let ds = MockDataSource()
+        let vm = MovieListViewModel(dataSource: ds)
+        vm.list = [FavMovie(id: 14), FavMovie(id: 15)]
+        vm.list[1].isFavourite = false
+        
+        // when
+        vm.didFavouriteButtonClick(index: 1)
+        
+        // then
+        XCTAssertEqual(ds.saveFavouriteCount, 1)
+        XCTAssertEqual(ds.saveFavouriteParameter, 15)
+    }
+    
+    func testDidChangeFavouriteMovieStatus() {
+        
+        // given
+        let ds = MockDataSource()
+        let vm = MovieListViewModel(dataSource: ds)
+        vm.list = [FavMovie(id: 14), FavMovie(id: 15)]
+        vm.list[1].isFavourite = false
+        
+        let view = MockView()
+        vm.viewDelegate = view
+        
+        // when
+        vm.didChangeMovieFavouriteStatus(id: 15, isFavourite: true)
+        
+        // then
+        XCTAssertEqual(vm.list[1].isFavourite, true)
+        
+        XCTAssertEqual(view.showListCallCount, 1)
     }
 }
 

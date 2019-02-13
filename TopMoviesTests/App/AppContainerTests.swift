@@ -14,7 +14,9 @@ class AppContainerTests: XCTestCase {
     
     func testInit() {
         
-        let container = AppContainer()
+        let window = UIWindow()
+        
+        let container = AppContainer(window: window)
         
         XCTAssertNotNil(container.dataSource)
         XCTAssertNotNil(container.router)
