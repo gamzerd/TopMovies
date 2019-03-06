@@ -52,6 +52,11 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
      */
     func load() {
         
+        if !CheckInternet.Connection() {
+            viewDelegate?.showAlert(alertTitle: "Warning", alertMessage: "You are not connected to the internet!", buttonTitle: "Retry")
+            return
+        }
+        
         Observable.zip(
             // get favourite list
             dataSource.getFavouritesList(),
@@ -66,7 +71,7 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
                 }
         }).observeOn(MainScheduler.instance)
             .subscribe(onError: {_ in
-                self.viewDelegate?.showError(message: "Fetching list failed!")
+                self.viewDelegate?.showAlert(alertTitle: "Error", alertMessage: "Fetching list failed!", buttonTitle: "Retry")
             }, onCompleted: {
                 self.viewDelegate?.showList(index: -1)
             }).disposed(by: self.disposeBag)
@@ -89,6 +94,14 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
             list[index!].isFavourite = isFavourite
             viewDelegate?.showList(index: index!)
         }
+    }
+    
+    /**
+     * Called when user clicks button in alert.
+     */
+    func didAlertButtonClick() {
+        
+        load()
     }
     
     /**

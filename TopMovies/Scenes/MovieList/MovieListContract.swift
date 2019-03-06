@@ -26,13 +26,17 @@ protocol MovieListViewModelProtocol: class {
     func didScrollToBottom()
     
     func didFavouriteButtonClick(index: Int)
+    
+    func didAlertButtonClick()
+    
 }
 
 protocol MovieListViewProtocol: class {
     
     func showList(index: Int)
-
-    func showError(message: String)
     
     func openPage(id: Int)
+
+    func showAlert(alertTitle: String, alertMessage: String, buttonTitle: String?)
+    
 }

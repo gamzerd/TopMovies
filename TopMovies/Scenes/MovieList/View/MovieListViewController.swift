@@ -48,8 +48,14 @@ extension MovieListViewController: MovieListViewProtocol {
      * Called when view model has an error.
      * @param message: to show in alert
      */
-    func showError(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+    func showAlert(alertTitle: String, alertMessage: String, buttonTitle: String?) {
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        
+        if let title = buttonTitle {
+            alert.addAction(UIAlertAction(title: title, style: .default, handler: { (UIAlertAction) in
+                self.viewModel.didAlertButtonClick()
+            }))
+        }
         present(alert, animated: true, completion: nil)
     }
     

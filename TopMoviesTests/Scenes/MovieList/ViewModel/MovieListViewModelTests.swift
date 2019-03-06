@@ -91,8 +91,8 @@ class MovieListViewModelTests: XCTestCase {
         XCTAssertNotNil(vm.list)
         XCTAssertEqual(vm.list.count, 0)
         
-        XCTAssertEqual(view.showErrorCount, 1)
-        XCTAssertEqual(view.showErrorParameter, "Fetching list failed!")
+        XCTAssertEqual(view.showAlertCount, 1)
+        XCTAssertEqual(view.showAlertParameter, "Fetching list failed!")
     }
 }
 
@@ -179,12 +179,12 @@ class MockDataSource: DataSourceProtocol {
 }
 
 class MockView: MovieListViewProtocol {
-    
+   
     var showListCallCount = 0
     var showListCallParameter: Int?
 
-    var showErrorCount = 0
-    var showErrorParameter: String?
+    var showAlertCount = 0
+    var showAlertParameter: String?
     
     var openPageCount = 0
     var openPageParameter: Int?
@@ -194,14 +194,14 @@ class MockView: MovieListViewProtocol {
         showListCallParameter = index
     }
     
-    func showError(message: String) {
-        showErrorCount += 1
-        showErrorParameter = message
-    }
-    
     func openPage(id: Int) {
         openPageCount += 1
         openPageParameter = id
+    }
+    
+    func showAlert(alertTitle: String, alertMessage: String, buttonTitle: String?) {
+        showAlertCount += 1
+        showAlertParameter = alertMessage
     }
     
 }
