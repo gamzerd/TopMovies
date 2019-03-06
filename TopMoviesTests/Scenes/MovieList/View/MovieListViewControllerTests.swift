@@ -123,7 +123,7 @@ private extension UITableView {
 }
 
 class MockViewModel: MovieListViewModelProtocol {
-    
+   
     var viewDelegate: MovieListViewProtocol?
     
     var list = [FavMovie]()
@@ -151,6 +151,10 @@ class MockViewModel: MovieListViewModelProtocol {
     }
     
     func didFavouriteButtonClick(index: Int) {
+        
+    }
+    
+    func didAlertButtonClick() {
         
     }
     

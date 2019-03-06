@@ -50,6 +50,7 @@
 		FA6756532203E446005FDFEE /* MovieDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6756522203E446005FDFEE /* MovieDetailViewControllerTests.swift */; };
 		FA6756552203E465005FDFEE /* MovieDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6756542203E465005FDFEE /* MovieDetailViewModelTests.swift */; };
 		FA67565922045FFE005FDFEE /* MovieDetailTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA67565822045FFE005FDFEE /* MovieDetailTableViewCellTests.swift */; };
+		FAE68263222ECFCA00382816 /* CheckInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE68262222ECFCA00382816 /* CheckInternet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,7 @@
 		FA6756522203E446005FDFEE /* MovieDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		FA6756542203E465005FDFEE /* MovieDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModelTests.swift; sourceTree = "<group>"; };
 		FA67565822045FFE005FDFEE /* MovieDetailTableViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailTableViewCellTests.swift; sourceTree = "<group>"; };
+		FAE68262222ECFCA00382816 /* CheckInternet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInternet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +263,7 @@
 		FA0981B521FB3AD2002B3099 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				FAE68261222ECFAC00382816 /* Utilities */,
 				FA0981B721FB3ADF002B3099 /* Constants */,
 				FA0981B621FB3AD8002B3099 /* Extensions */,
 			);
@@ -479,6 +482,14 @@
 				FA67565822045FFE005FDFEE /* MovieDetailTableViewCellTests.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		FAE68261222ECFAC00382816 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				FAE68262222ECFCA00382816 /* CheckInternet.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -700,6 +711,7 @@
 				FA0981D621FB69BB002B3099 /* MovieListBuilder.swift in Sources */,
 				FA0981E821FBBD6D002B3099 /* MovieDetailViewModel.swift in Sources */,
 				FA0981D221FB66E3002B3099 /* UITableViewCellExtensions.swift in Sources */,
+				FAE68263222ECFCA00382816 /* CheckInternet.swift in Sources */,
 				FA0981BE21FB4BC5002B3099 /* MoviesResponse.swift in Sources */,
 				FA0981DC21FB6B04002B3099 /* MovieListTableViewCell.swift in Sources */,
 				FA0981F021FC03AF002B3099 /* DateExtensions.swift in Sources */,
@@ -879,6 +891,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z98T82KQNS;
 				INFOPLIST_FILE = TopMovies/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -897,6 +910,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z98T82KQNS;
 				INFOPLIST_FILE = TopMovies/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
