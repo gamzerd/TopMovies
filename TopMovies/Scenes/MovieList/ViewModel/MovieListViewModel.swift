@@ -54,7 +54,6 @@ final class MovieListViewModel: MovieListViewModelProtocol, DataSourceDelegatePr
         
         if !CheckInternet.Connection() {
             viewDelegate?.showAlert(alertTitle: "Warning", alertMessage: "You are not connected to the internet!", buttonTitle: "Retry")
-            return
         }
         
         Observable.zip(
